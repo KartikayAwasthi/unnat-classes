@@ -39,10 +39,13 @@ export default function Hero() {
             {SITE.mission}
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+          <div className="mt-6 flex flex-col items-center gap-2 lg:items-start">
             <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/20">
               <GraduationCap className="h-4 w-4" />
               For {SITE.classesRange}
+            </span>
+            <span className="text-xs font-medium text-white/50 sm:text-sm">
+              {SITE.classesNote}
             </span>
           </div>
 

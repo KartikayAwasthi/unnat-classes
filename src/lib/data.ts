@@ -11,6 +11,8 @@ import {
   BarChart3,
   HeartHandshake,
   Library,
+  GraduationCap,
+  Landmark,
 } from "lucide-react";
 
 export const SITE = {
@@ -19,7 +21,8 @@ export const SITE = {
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
     "Our mission is to provide every child with quality education, strong values, and a better direction for a better future.",
-  classesRange: "Class 1 to 10",
+  classesRange: "Class 1 to 12",
+  classesNote: "Class 1–10: All Subjects · Class 11–12: Humanities Stream",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
   address: "Unnat Classes — Building Strong Foundations for a Bright Future.",
@@ -93,27 +96,40 @@ export const features = [
 ] as const;
 
 export const stats = [
-  { label: "Classes Offered", value: "1–10" },
-  { label: "Focus Areas", value: "6+" },
+  { label: "Classes Offered", value: "1–12" },
+  { label: "Years of Experience", value: "8+" },
   { label: "Batch Size", value: "Small" },
   { label: "Dedicated Teachers", value: "100%" },
 ];
 
 export const teacher = {
-  name: "Tanuja Rajput",
+  name: "Tanuja Singh",
   role: "Founder & Lead Teacher, Unnat Classes",
+  photo: "/images/tanuja-singh.jpg",
   quote:
     "Every child is unique — my role is simply to help them discover their own potential.",
   bio: [
-    "Tanuja Rajput founded Unnat Classes with a simple belief: every child deserves quality education, patient guidance, and a learning environment where they feel safe to grow.",
-    "With years of experience teaching students from Class 1 to 10, she has developed a concept-first teaching style that focuses on genuine understanding rather than rote memorization — helping students build strong foundations that last well beyond the classroom.",
+    "Tanuja Singh founded Unnat Classes with a simple belief: every child deserves quality education, patient guidance, and a learning environment where they feel safe to grow.",
+    "With over 8 years of experience teaching Social Sciences, Liberal Arts, Science, and Elementary Mathematics, she has developed a concept-first teaching style that focuses on genuine understanding rather than rote memorization — helping students build strong foundations that last well beyond the classroom.",
+    "She previously served as a Senior Teacher at Asha Ram Royal Public School, and independently ran a tuition center for Class 6 to 10 for several years, combining structured lesson planning with personalized, one-on-one attention for every student.",
     "Beyond academics, she places equal emphasis on discipline, confidence, and values, believing that true success comes from developing the whole child, not just exam results.",
   ],
   highlights: [
-    "Concept-based teaching across Class 1 to 10",
-    "Personalized attention through small batch sizes",
-    "Regular assessments with detailed feedback",
-    "A safe, motivating, and value-driven classroom culture",
+    "8+ years of teaching experience across Social Sciences, Liberal Arts, Science & Elementary Mathematics",
+    "Senior Teacher at Asha Ram Royal Public School (2019–2023)",
+    "Founder & Lead Instructor of a self-established tuition center for Class 6–10 (2016–2023)",
+    "CTET & UGC NET (Political Science) qualified educator",
+  ],
+  education: [
+    "B.Ed — Chaudhary Ranbir Singh University, Haryana",
+    "M.A. Political Science (Hons.) — Kalinga University, Madhya Pradesh",
+    "M.A. Public Administration (Hons.) — Indira Gandhi National Open University",
+    "B.A. Political Science (Hons.) — School of Open Learning, Delhi University",
+  ],
+  certifications: [
+    "CTET Qualified",
+    "UGC NET Qualified — Political Science",
+    "Diploma in Research & Computer Application — Simtech Institute, Delhi",
   ],
   philosophy: [
     {
@@ -141,20 +157,47 @@ export const classGroups = [
   {
     range: "Class 1 – 5",
     title: "Foundation Years",
+    subjects: "All Subjects",
     description:
       "Building strong basics in reading, writing, and numeracy through engaging, concept-based learning.",
   },
   {
     range: "Class 6 – 8",
     title: "Building Blocks",
+    subjects: "All Subjects",
     description:
       "Strengthening core subjects and study habits as the curriculum grows more demanding.",
   },
   {
     range: "Class 9 – 10",
     title: "Exam Readiness",
+    subjects: "All Subjects",
     description:
       "Focused board-exam preparation with complete syllabus coverage, regular tests, and doubt-clearing sessions.",
+  },
+  {
+    range: "Class 11 – 12",
+    title: "Humanities Stream",
+    subjects: "Humanities Only",
+    description:
+      "Focused coaching in Political Science, History, Geography, and Economics for senior secondary Humanities students, led by a UGC NET & Political Science postgraduate.",
+  },
+];
+
+export const subjectsByStage = [
+  {
+    icon: GraduationCap,
+    range: "Class 1 – 10",
+    label: "All Subjects",
+    description:
+      "Complete coverage across every subject — languages, mathematics, science, and social science.",
+  },
+  {
+    icon: Landmark,
+    range: "Class 11 – 12",
+    label: "Humanities Only",
+    description:
+      "Political Science, History, Geography, and Economics for the Humanities/Arts stream.",
   },
 ];
 

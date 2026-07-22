@@ -7,7 +7,7 @@ import { SITE } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Contact | Unnat Classes",
   description:
-    "Get in touch with Unnat Classes to enroll your child for Class 1 to 10. Limited seats available.",
+    "Get in touch with Unnat Classes to enroll your child for Class 1 to 12. Limited seats available.",
 };
 
 export default function ContactPage() {

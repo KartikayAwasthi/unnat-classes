@@ -18,13 +18,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Unnat Classes | Education Today, Success Tomorrow",
   description:
-    "Unnat Classes offers quality coaching for Class 1 to 10 with experienced teachers, concept-based learning, small batches, and personalized attention. Learn Today, Lead Tomorrow.",
+    "Unnat Classes offers quality coaching for Class 1 to 12 — all subjects for Class 1 to 10, and a Humanities stream for Class 11 to 12 — with experienced teachers, concept-based learning, small batches, and personalized attention.",
   keywords: [
     "Unnat Classes",
     "coaching classes",
     "tuition",
-    "Class 1 to 10",
-    "Tanuja Rajput",
+    "Class 1 to 12",
+    "Humanities coaching",
+    "Tanuja Singh",
   ],
 };
 

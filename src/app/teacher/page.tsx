@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, GraduationCap, Phone, Quote } from "lucide-react";
+import Image from "next/image";
+import {
+  Award,
+  ArrowRight,
+  GraduationCap,
+  Phone,
+  Quote,
+} from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SITE, teacher } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: `${teacher.name} | Unnat Classes`,
-  description: `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 1 to 10.`,
+  description: `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 1 to 12.`,
 };
 
 export default function TeacherPage() {
@@ -56,13 +63,15 @@ export default function TeacherPage() {
           <Reveal delay={0.15}>
             <div className="relative mx-auto max-w-sm">
               <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gold-400/15 blur-2xl" />
-              <div className="flex aspect-[4/5] items-center justify-center rounded-[2rem] bg-gradient-to-br from-navy-800 to-navy-950 shadow-2xl ring-1 ring-white/10">
-                <span className="font-heading text-8xl font-extrabold text-gold-400/90">
-                  {teacher.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </span>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy-950 shadow-2xl ring-1 ring-white/10">
+                <Image
+                  src={teacher.photo}
+                  alt={teacher.name}
+                  fill
+                  sizes="(max-width: 640px) 90vw, 400px"
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-6 left-1/2 flex w-[88%] -translate-x-1/2 items-center gap-3 rounded-2xl bg-white px-5 py-4 text-navy-900 shadow-xl">
                 <GraduationCap className="h-8 w-8 shrink-0 text-gold-500" />
@@ -100,6 +109,59 @@ export default function TeacherPage() {
       </section>
 
       <section className="bg-cream py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <span className="text-sm font-bold uppercase tracking-widest text-gold-600">
+              Qualifications
+            </span>
+            <h2 className="mt-3 font-heading text-3xl font-extrabold text-navy-900 sm:text-4xl">
+              Education & Certifications
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <Reveal className="rounded-2xl bg-white p-7 shadow-sm">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 font-heading text-base font-bold text-navy-900">
+                Education
+              </h3>
+              <ul className="mt-3 space-y-2.5">
+                {teacher.education.map((item) => (
+                  <li
+                    key={item}
+                    className="text-sm leading-relaxed text-navy-900/65"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={0.1} className="rounded-2xl bg-white p-7 shadow-sm">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
+                <Award className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 font-heading text-base font-bold text-navy-900">
+                Certifications
+              </h3>
+              <ul className="mt-3 space-y-2.5">
+                {teacher.certifications.map((item) => (
+                  <li
+                    key={item}
+                    className="text-sm leading-relaxed text-navy-900/65"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <span className="text-sm font-bold uppercase tracking-widest text-gold-600">
@@ -132,7 +194,7 @@ export default function TeacherPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-cream py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <Reveal className="text-center">
             <span className="text-sm font-bold uppercase tracking-widest text-gold-600">

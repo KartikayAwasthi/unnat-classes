@@ -75,6 +75,11 @@ export default function ContactForm() {
                     Class {c}
                   </option>
                 ))}
+                {[11, 12].map((c) => (
+                  <option key={c} value={c}>
+                    Class {c} (Humanities)
+                  </option>
+                ))}
               </select>
             </div>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Quote } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { teacher } from "@/lib/data";
@@ -42,13 +43,15 @@ export default function TeacherPreview() {
           <Reveal delay={0.15} className="order-1 lg:order-2">
             <div className="relative mx-auto max-w-sm">
               <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gold-400/20 blur-2xl" />
-              <div className="flex aspect-[4/5] items-center justify-center rounded-[2rem] bg-gradient-to-br from-navy-800 to-navy-950 shadow-2xl">
-                <span className="font-heading text-7xl font-extrabold text-gold-400/90">
-                  {teacher.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </span>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy-950 shadow-2xl">
+                <Image
+                  src={teacher.photo}
+                  alt={teacher.name}
+                  fill
+                  sizes="(max-width: 640px) 90vw, 400px"
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-5 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl bg-white px-5 py-4 text-center shadow-xl">
                 <p className="font-heading text-sm font-bold text-navy-900">

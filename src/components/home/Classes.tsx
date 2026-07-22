@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { classGroups } from "@/lib/data";
+import { SITE, classGroups } from "@/lib/data";
 
 export default function Classes() {
   return (
@@ -12,23 +12,28 @@ export default function Classes() {
             Courses
           </span>
           <h2 className="mt-3 font-heading text-3xl font-extrabold text-navy-900 sm:text-4xl">
-            For Class 1 to 10
+            For {SITE.classesRange}
           </h2>
           <p className="mt-4 text-base text-navy-900/60 sm:text-lg">
-            A structured path at every stage — from foundation to board-exam readiness.
+            {SITE.classesNote}
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {classGroups.map((group, i) => (
             <Reveal
               key={group.range}
               delay={i * 0.1}
               className="flex flex-col rounded-2xl border border-navy-900/5 bg-white p-8 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
             >
-              <span className="inline-block w-fit rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">
-                {group.range}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-block w-fit rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">
+                  {group.range}
+                </span>
+                <span className="inline-block w-fit rounded-full bg-navy-900/5 px-3 py-1 text-xs font-semibold text-navy-900/60">
+                  {group.subjects}
+                </span>
+              </div>
               <h3 className="mt-4 font-heading text-xl font-bold text-navy-900">
                 {group.title}
               </h3>
