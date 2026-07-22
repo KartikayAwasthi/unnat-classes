@@ -30,7 +30,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
         <Link href="/" className="flex items-center gap-2.5">
-          <Logo className="h-10 w-10 sm:h-11 sm:w-11" />
+          <Logo className="h-15 w-15 sm:h-[70px] sm:w-[70px]" />
           <span className="flex flex-col leading-tight">
             <span className="font-heading text-lg font-bold tracking-tight text-navy-900 sm:text-xl">
               UNNAT <span className="text-gold-500">CLASSES</span>

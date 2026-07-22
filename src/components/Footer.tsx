@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2.5">
-            <Logo className="h-10 w-10" variant="light" />
+            <Logo className="h-[75px] w-[75px]" />
             <span className="font-heading text-lg font-bold tracking-tight">
               UNNAT <span className="text-gold-400">CLASSES</span>
             </span>
