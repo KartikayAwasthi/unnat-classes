@@ -19,27 +19,33 @@ export default function Classes() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 flex flex-wrap justify-center gap-6">
           {classGroups.map((group, i) => (
             <Reveal
               key={group.range}
               delay={i * 0.1}
-              className="flex flex-col rounded-2xl border border-navy-900/5 bg-white p-8 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
+              className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-navy-900/5 bg-white shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-block w-fit rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">
-                  {group.range}
-                </span>
-                <span className="inline-block w-fit rounded-full bg-navy-900/5 px-3 py-1 text-xs font-semibold text-navy-900/60">
+              <div className="h-1.5 w-full bg-gradient-to-r from-gold-400 to-gold-600 transition-all group-hover:from-navy-700 group-hover:to-navy-900" />
+              <div className="flex flex-1 flex-col p-8">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-400 shadow-md transition-colors group-hover:bg-gold-500 group-hover:text-navy-950">
+                    <group.icon className="h-6 w-6" />
+                  </div>
+                  <span className="text-right text-xs font-bold uppercase tracking-widest text-navy-900/40">
+                    {group.range}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-heading text-xl font-bold text-navy-900">
+                  {group.title}
+                </h3>
+                <span className="mt-3 inline-block w-fit rounded-full bg-gold-400/20 px-3 py-1 text-xs font-semibold text-gold-600">
                   {group.subjects}
                 </span>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-navy-900/60">
+                  {group.description}
+                </p>
               </div>
-              <h3 className="mt-4 font-heading text-xl font-bold text-navy-900">
-                {group.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-900/60">
-                {group.description}
-              </p>
             </Reveal>
           ))}
         </div>

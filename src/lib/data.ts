@@ -13,6 +13,9 @@ import {
   Library,
   GraduationCap,
   Landmark,
+  Sprout,
+  Blocks,
+  Award,
 } from "lucide-react";
 
 export const SITE = {
@@ -167,6 +170,7 @@ export const teacher = {
 
 export const classGroups = [
   {
+    icon: Sprout,
     range: "Class 1 – 5",
     title: "Foundation Years",
     subjects: "All Subjects",
@@ -174,6 +178,7 @@ export const classGroups = [
       "Building strong basics in reading, writing, and numeracy through engaging, concept-based learning.",
   },
   {
+    icon: Blocks,
     range: "Class 6 – 8",
     title: "Building Blocks",
     subjects: "All Subjects",
@@ -181,6 +186,7 @@ export const classGroups = [
       "Strengthening core subjects and study habits as the curriculum grows more demanding.",
   },
   {
+    icon: Award,
     range: "Class 9 – 10",
     title: "Exam Readiness",
     subjects: "All Subjects",
@@ -188,6 +194,7 @@ export const classGroups = [
       "Focused board-exam preparation with complete syllabus coverage, regular tests, and doubt-clearing sessions.",
   },
   {
+    icon: Landmark,
     range: "Class 11 – 12",
     title: "Humanities Stream",
     subjects: "Humanities Only",
@@ -195,6 +202,7 @@ export const classGroups = [
       "Focused coaching in Political Science, History, Geography, and Economics for senior secondary Humanities students, led by a UGC NET & Political Science postgraduate.",
   },
   {
+    icon: Target,
     range: "Competition Batch",
     title: "GS Classes",
     subjects: "General Studies",

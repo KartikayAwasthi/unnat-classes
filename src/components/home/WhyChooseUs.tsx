@@ -18,22 +18,23 @@ export default function WhyChooseUs() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-14 flex flex-wrap justify-center gap-6">
           {whyChooseUs.map((item, i) => (
             <Reveal
               key={item.title}
               delay={i * 0.08}
-              className={`group rounded-2xl border border-navy-900/5 bg-white p-6 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl ${
-                i === 0 ? "lg:col-span-1" : ""
-              }`}
+              className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-navy-900/5 bg-white p-7 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 transition-colors group-hover:bg-gold-500 group-hover:text-navy-950">
+              <span className="pointer-events-none absolute -right-1 -top-3 font-heading text-6xl font-extrabold text-navy-900/[0.04] transition-colors group-hover:text-gold-400/20">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 shadow-md transition-colors group-hover:bg-gold-500 group-hover:text-navy-950">
                 <item.icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-heading text-base font-bold text-navy-900">
+              <h3 className="relative mt-5 font-heading text-base font-bold text-navy-900">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-900/60">
+              <p className="relative mt-2 text-sm leading-relaxed text-navy-900/60">
                 {item.description}
               </p>
             </Reveal>
