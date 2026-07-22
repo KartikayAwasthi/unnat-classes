@@ -18,6 +18,8 @@ export default function ContactForm() {
         {submitted ? (
           <motion.div
             key="success"
+            role="status"
+            aria-live="polite"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -42,23 +44,35 @@ export default function ContactForm() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-navy-900">
+                <label
+                  htmlFor="contact-name"
+                  className="mb-1.5 block text-sm font-semibold text-navy-900"
+                >
                   Parent / Student Name
                 </label>
                 <input
+                  id="contact-name"
+                  name="name"
                   required
                   type="text"
+                  autoComplete="name"
                   placeholder="Your name"
                   className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-navy-900">
+                <label
+                  htmlFor="contact-phone"
+                  className="mb-1.5 block text-sm font-semibold text-navy-900"
+                >
                   Phone Number
                 </label>
                 <input
+                  id="contact-phone"
+                  name="phone"
                   required
                   type="tel"
+                  autoComplete="tel"
                   placeholder="Your phone number"
                   className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
                 />
@@ -66,10 +80,17 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-semibold text-navy-900">
+              <label
+                htmlFor="contact-class"
+                className="mb-1.5 block text-sm font-semibold text-navy-900"
+              >
                 Class Interested In
               </label>
-              <select className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30">
+              <select
+                id="contact-class"
+                name="class"
+                className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
+              >
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((c) => (
                   <option key={c} value={c}>
                     Class {c}
@@ -80,14 +101,20 @@ export default function ContactForm() {
                     Class {c} (Humanities)
                   </option>
                 ))}
+                <option value="gs-competition">Competition Batch (GS Classes)</option>
               </select>
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-semibold text-navy-900">
+              <label
+                htmlFor="contact-message"
+                className="mb-1.5 block text-sm font-semibold text-navy-900"
+              >
                 Message
               </label>
               <textarea
+                id="contact-message"
+                name="message"
                 rows={4}
                 placeholder="Tell us how we can help..."
                 className="w-full resize-none rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"

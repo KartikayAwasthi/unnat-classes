@@ -3,10 +3,15 @@ import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SITE, classGroups, features, subjectsByStage } from "@/lib/data";
 
+const description =
+  "Unnat Classes offers structured coaching for Class 1 to 12 — all subjects for Class 1 to 10, a dedicated Humanities stream for Class 11 to 12, and a Competition Batch (GS Classes) for competitive exam aspirants.";
+
 export const metadata: Metadata = {
-  title: "Courses | Unnat Classes",
-  description:
-    "Unnat Classes offers structured coaching for Class 1 to 12 — all subjects for Class 1 to 10, and a dedicated Humanities stream for Class 11 to 12.",
+  title: "Courses",
+  description,
+  alternates: { canonical: "/courses" },
+  openGraph: { url: "/courses", title: "Courses | Unnat Classes", description },
+  twitter: { title: "Courses | Unnat Classes", description },
 };
 
 export default function CoursesPage() {

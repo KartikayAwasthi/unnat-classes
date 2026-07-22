@@ -11,9 +11,14 @@ import {
 import Reveal from "@/components/Reveal";
 import { SITE, teacher } from "@/lib/data";
 
+const description = `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 1 to 12.`;
+
 export const metadata: Metadata = {
-  title: `${teacher.name} | Unnat Classes`,
-  description: `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 1 to 12.`,
+  title: teacher.name,
+  description,
+  alternates: { canonical: "/teacher" },
+  openGraph: { url: "/teacher", title: `${teacher.name} | Unnat Classes`, description },
+  twitter: { title: `${teacher.name} | Unnat Classes`, description },
 };
 
 export default function TeacherPage() {
@@ -66,7 +71,7 @@ export default function TeacherPage() {
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy-950 shadow-2xl ring-1 ring-white/10">
                 <Image
                   src={teacher.photo}
-                  alt={teacher.name}
+                  alt={`${teacher.name}, ${teacher.role}`}
                   fill
                   sizes="(max-width: 640px) 90vw, 400px"
                   className="object-cover object-top"

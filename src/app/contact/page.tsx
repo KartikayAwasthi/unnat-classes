@@ -4,10 +4,15 @@ import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import { SITE } from "@/lib/data";
 
+const description =
+  "Get in touch with Unnat Classes to enroll your child for Class 1 to 12. Limited seats available.";
+
 export const metadata: Metadata = {
-  title: "Contact | Unnat Classes",
-  description:
-    "Get in touch with Unnat Classes to enroll your child for Class 1 to 12. Limited seats available.",
+  title: "Contact",
+  description,
+  alternates: { canonical: "/contact" },
+  openGraph: { url: "/contact", title: "Contact | Unnat Classes", description },
+  twitter: { title: "Contact | Unnat Classes", description },
 };
 
 export default function ContactPage() {

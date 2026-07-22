@@ -17,15 +17,24 @@ import {
 
 export const SITE = {
   name: "Unnat Classes",
+  // TODO: swap in the real production domain once the site is deployed —
+  // this single value feeds metadataBase, canonical URLs, sitemap.xml, robots.txt, and OG/Twitter tags.
+  url: "https://www.unnatclasses.com",
   tagline: "Education Today, Success Tomorrow",
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
     "Our mission is to provide every child with quality education, strong values, and a better direction for a better future.",
   classesRange: "Class 1 to 12",
-  classesNote: "Class 1–10: All Subjects · Class 11–12: Humanities Stream",
+  classesNote:
+    "Class 1–10: All Subjects · Class 11–12: Humanities Stream · Competition Batch: GS Classes",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
   address: "A-7, Ganesh Nagar Colony, New Bhupani, Near Puri Aman Villa, Sector 89, Faridabad",
+  city: "Faridabad",
+  state: "Haryana",
+  // TODO: add the exact postal code for Sector 89 — omitted for now rather than guessed.
+  country: "IN",
+  geo: { lat: 28.424347, lng: 77.376129 },
   mapsHref: "https://maps.google.com/?q=28.424347,77.376129",
   admissionsNote: "Admissions Open — Limited Seats. Enroll Today!",
 };
@@ -183,6 +192,13 @@ export const classGroups = [
     description:
       "Focused coaching in Political Science, History, Geography, and Economics for senior secondary Humanities students, led by a UGC NET & Political Science postgraduate.",
   },
+  {
+    range: "Competition Batch",
+    title: "GS Classes",
+    subjects: "General Studies",
+    description:
+      "Dedicated General Studies coaching for competitive exam aspirants, covering History, Geography, Polity, Economics, and Current Affairs.",
+  },
 ];
 
 export const subjectsByStage = [
@@ -199,6 +215,13 @@ export const subjectsByStage = [
     label: "Humanities Only",
     description:
       "Political Science, History, Geography, and Economics for the Humanities/Arts stream.",
+  },
+  {
+    icon: Target,
+    range: "Competition Batch",
+    label: "GS Classes",
+    description:
+      "General Studies coaching for competitive exam aspirants — History, Geography, Polity, Economics & Current Affairs.",
   },
 ];
 
