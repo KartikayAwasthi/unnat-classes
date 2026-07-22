@@ -39,11 +39,17 @@ export default function Hero() {
             {SITE.mission}
           </p>
 
-          <div className="mt-6 flex flex-col items-center gap-2 lg:items-start">
-            <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/20">
-              <GraduationCap className="h-4 w-4" />
-              For {SITE.classesRange}
-            </span>
+          <div className="mt-6 flex flex-col items-center gap-3 lg:items-start">
+            <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-2.5 text-xs font-bold text-navy-950 shadow-lg shadow-gold-500/20 sm:px-5 sm:text-sm">
+                <GraduationCap className="h-4 w-4 shrink-0" />
+                For {SITE.classesRange}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-white/10 px-4 py-2.5 text-xs font-bold text-gold-300 backdrop-blur-sm sm:px-5 sm:text-sm">
+                <Sparkles className="h-4 w-4 shrink-0" />
+                Competition Batch: GS Classes
+              </span>
+            </div>
             <span className="text-xs font-medium text-white/50 sm:text-sm">
               {SITE.classesNote}
             </span>
