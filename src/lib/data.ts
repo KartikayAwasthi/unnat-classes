@@ -20,9 +20,9 @@ import {
 
 export const SITE = {
   name: "Unnat Classes",
-  // TODO: swap in the real production domain once the site is deployed —
-  // this single value feeds metadataBase, canonical URLs, sitemap.xml, robots.txt, and OG/Twitter tags.
-  url: "https://www.unnatclasses.com",
+  // This single value feeds metadataBase, canonical URLs, sitemap.xml, robots.txt, and OG/Twitter tags.
+  // TODO: swap to the custom domain (www.unnatclasses.com) once it's registered and DNS is pointed at Vercel.
+  url: "https://unnat-classes.vercel.app",
   tagline: "Education Today, Success Tomorrow",
   subTagline: "Learn Today, Lead Tomorrow",
   mission:

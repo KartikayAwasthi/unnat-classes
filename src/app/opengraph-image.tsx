@@ -1,10 +1,18 @@
 import { ImageResponse } from "next/og";
+import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 import { SITE } from "@/lib/data";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const logoData = await readFile(
+    join(process.cwd(), "public/images/logo.png"),
+    "base64"
+  );
+  const logoSrc = `data:image/png;base64,${logoData}`;
+
   return new ImageResponse(
     (
       <div
@@ -20,15 +28,11 @@ export default function Image() {
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            width: 88,
-            height: 88,
-            borderRadius: 9999,
-            background: "#f2a71b",
-            marginBottom: 32,
-          }}
+        <img
+          src={logoSrc}
+          width={120}
+          height={120}
+          style={{ borderRadius: 9999, marginBottom: 32 }}
         />
         <div style={{ display: "flex", fontSize: 72, fontWeight: 800, letterSpacing: -1 }}>
           UNNAT <span style={{ color: "#f2a71b", marginLeft: 20 }}>CLASSES</span>
