@@ -63,11 +63,16 @@ export default function ContactPage() {
                     </span>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wide text-white/50">
-                        Unnat Classes
+                        Visit Us
                       </p>
-                      <p className="text-sm text-white/80">
-                        Building Strong Foundations for a Bright Future.
-                      </p>
+                      <a
+                        href={SITE.mapsHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-white/80 underline decoration-white/30 underline-offset-2 transition-colors hover:text-gold-400"
+                      >
+                        {SITE.address}
+                      </a>
                     </div>
                   </div>
 
@@ -85,13 +90,24 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <a
-                href={SITE.phoneHref}
-                className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
-              >
-                <Phone className="h-4 w-4" />
-                Call {SITE.phone}
-              </a>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a
+                  href={SITE.phoneHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
+                >
+                  <Phone className="h-4 w-4" />
+                  Call {SITE.phone}
+                </a>
+                <a
+                  href={SITE.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <MapPin className="h-4 w-4 text-gold-400" />
+                  Get Directions
+                </a>
+              </div>
             </div>
           </Reveal>
 

@@ -25,7 +25,8 @@ export const SITE = {
   classesNote: "Class 1–10: All Subjects · Class 11–12: Humanities Stream",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
-  address: "Unnat Classes — Building Strong Foundations for a Bright Future.",
+  address: "A-7, Ganesh Nagar Colony, New Bhupani, Near Puri Aman Villa, Sector 89, Faridabad",
+  mapsHref: "https://maps.google.com/?q=28.424347,77.376129",
   admissionsNote: "Admissions Open — Limited Seats. Enroll Today!",
 };
 
