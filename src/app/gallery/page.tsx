@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import ReelVideo from "@/components/gallery/ReelVideo";
 import { SITE } from "@/lib/data";
 
 const description =
@@ -14,6 +15,19 @@ export const metadata: Metadata = {
   openGraph: { url: "/gallery", title: "Gallery | Unnat Classes", description },
   twitter: { title: "Gallery | Unnat Classes", description },
 };
+
+// Re-render on every request (instead of serving a statically built page)
+// so the shuffled order below is actually different on each page load.
+export const dynamic = "force-dynamic";
+
+function shuffle<T>(items: T[]): T[] {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
 
 const media = [
   {
@@ -94,9 +108,18 @@ const media = [
     height: 720,
     alt: "Tanuja Singh posing with a group of students",
   },
+  {
+    type: "image" as const,
+    src: "/images/gallery/classroom-11.jpg",
+    width: 960,
+    height: 1280,
+    alt: "Tanuja Singh seated at a classroom desk in front of the blackboard",
+  },
 ];
 
 export default function GalleryPage() {
+  const shuffledMedia = shuffle(media);
+
   return (
     <>
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
@@ -117,20 +140,19 @@ export default function GalleryPage() {
       <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
-            {media.map((item, i) => (
+            {shuffledMedia.map((item, i) => (
               <Reveal
                 key={item.src}
                 delay={i * 0.08}
                 className="group mb-6 block break-inside-avoid overflow-hidden rounded-2xl shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
               >
                 {item.type === "video" ? (
-                  <video
+                  <ReelVideo
                     src={item.src}
-                    poster={item.poster}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="h-auto w-full"
+                    poster={item.poster!}
+                    alt={item.alt}
+                    width={item.width}
+                    height={item.height}
                   />
                 ) : (
                   <Image
