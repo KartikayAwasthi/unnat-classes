@@ -45,7 +45,7 @@ export default function Hero() {
                 <GraduationCap className="h-4 w-4 shrink-0" />
                 For {SITE.classesRange}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-white/10 px-4 py-2.5 text-xs font-bold text-gold-300 backdrop-blur-sm sm:px-5 sm:text-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-2.5 text-xs font-bold text-navy-950 shadow-lg shadow-gold-500/20 sm:px-5 sm:text-sm">
                 <Sparkles className="h-4 w-4 shrink-0" />
                 Competition Batch: GS Classes
               </span>
