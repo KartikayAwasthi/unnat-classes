@@ -126,13 +126,12 @@ export const teacher = {
   bio: [
     "Tanuja Singh founded Unnat Classes with a simple belief: every child deserves quality education, patient guidance, and a learning environment where they feel safe to grow.",
     "With over 8 years of experience teaching Social Sciences, Liberal Arts, Science, and Elementary Mathematics, she has developed a concept-first teaching style that focuses on genuine understanding rather than rote memorization — helping students build strong foundations that last well beyond the classroom.",
-    "She previously served as a Senior Teacher at Asha Ram Royal Public School, and independently ran a tuition center for Class 6 to 10 for several years, combining structured lesson planning with personalized, one-on-one attention for every student.",
+    "She previously founded and led a self-established Coaching center for Class 6 to 10 for several years, combining structured lesson planning with personalized, one-on-one attention for every student.",
     "Beyond academics, she places equal emphasis on discipline, confidence, and values, believing that true success comes from developing the whole child, not just exam results.",
   ],
   highlights: [
     "8+ years of teaching experience across Social Sciences, Liberal Arts, Science & Elementary Mathematics",
-    "Senior Teacher at Asha Ram Royal Public School (2019–2023)",
-    "Founder & Lead Instructor of a self-established tuition center for Class 6–10 (2016–2023)",
+    "Founder & Lead Instructor of a self-established Coaching center",
     "CTET & UGC NET (Political Science) qualified educator",
   ],
   education: [
