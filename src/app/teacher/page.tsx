@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Phone,
   Quote,
+  Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SITE, teacher } from "@/lib/data";
@@ -63,6 +64,21 @@ export default function TeacherPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+
+            <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-6">
+              <div>
+                <p className="font-heading text-2xl font-extrabold text-gold-400">8+</p>
+                <p className="text-xs text-white/50">Years Experience</p>
+              </div>
+              <div>
+                <p className="font-heading text-2xl font-extrabold text-gold-400">CTET & NET</p>
+                <p className="text-xs text-white/50">Qualified Educator</p>
+              </div>
+              <div>
+                <p className="font-heading text-2xl font-extrabold text-gold-400">Founder</p>
+                <p className="text-xs text-white/50">& Lead Teacher</p>
+              </div>
+            </div>
           </Reveal>
 
           <Reveal delay={0.15}>
@@ -85,6 +101,32 @@ export default function TeacherPage() {
                   <p className="text-xs text-navy-900/50">Unnat Classes</p>
                 </div>
               </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-cream py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-xl text-center">
+            <span className="text-sm font-bold uppercase tracking-widest text-gold-600">
+              Certified & Trusted
+            </span>
+            <h2 className="mt-3 font-heading text-3xl font-extrabold text-navy-900 sm:text-4xl">
+              A Dedicated Educator
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1} className="mt-10">
+            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-navy-900/5">
+              <Image
+                src="/images/teacher-banner.jpg"
+                alt={`${teacher.name} — Founder & Owner Teacher, Unnat Classes`}
+                width={1536}
+                height={1024}
+                sizes="(max-width: 768px) 90vw, 896px"
+                className="h-auto w-full"
+              />
             </div>
           </Reveal>
         </div>
@@ -200,8 +242,8 @@ export default function TeacherPage() {
       </section>
 
       <section className="bg-cream py-20 sm:py-28">
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <Reveal className="text-center">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <span className="text-sm font-bold uppercase tracking-widest text-gold-600">
               Highlights
             </span>
@@ -210,19 +252,24 @@ export default function TeacherPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2">
-            {teacher.highlights.map((highlight, i) => (
-              <Reveal
-                key={highlight}
-                delay={i * 0.08}
-                className="flex items-start gap-3 rounded-xl bg-navy-950 p-5 text-white"
-              >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-500 text-xs font-bold text-navy-950">
-                  {i + 1}
-                </span>
-                <p className="text-sm leading-relaxed text-white/80">{highlight}</p>
-              </Reveal>
-            ))}
+          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+            {teacher.highlights.map((highlight, i) => {
+              const HighlightIcon = [GraduationCap, Sparkles, Award][i % 3];
+              return (
+                <Reveal
+                  key={highlight}
+                  delay={i * 0.1}
+                  className="rounded-2xl border border-navy-900/5 bg-white p-7 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
+                    <HighlightIcon className="h-6 w-6" />
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-navy-900/70">
+                    {highlight}
+                  </p>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
