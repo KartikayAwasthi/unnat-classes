@@ -23,7 +23,7 @@ export const SITE = {
   // This single value feeds metadataBase, canonical URLs, sitemap.xml, robots.txt, and OG/Twitter tags.
   // TODO: swap to the custom domain (www.unnatclasses.com) once it's registered and DNS is pointed at Vercel.
   url: "https://unnat-classes.vercel.app",
-  tagline: "Education Today, Success Tomorrow",
+  tagline: "Building Strong Foundation for Bright Futures.",
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
     "Our mission is to provide every child with quality education, strong values, and a better direction for a better future.",
