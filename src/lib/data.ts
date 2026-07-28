@@ -42,6 +42,9 @@ export const SITE = {
   geo: { lat: 28.424347, lng: 77.376129 },
   mapsHref: "https://maps.google.com/?q=28.424347,77.376129",
   admissionsNote: "Admissions Open — Limited Seats. Enroll Today!",
+  youtubeHref: "https://www.youtube.com/@UnnatClasses-Tannu",
+  instagramHref: "https://www.instagram.com/unnatclasses.in/",
+  twitterHref: "https://x.com/unnatclasses?s=11",
 };
 
 export const whyChooseUs = [
