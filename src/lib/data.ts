@@ -237,6 +237,7 @@ export const subjectsByStage = [
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
+  { href: "/resources", label: "Resources" },
   { href: "/teacher", label: "Our Teacher" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
