@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
-import { posts } from "@/lib/mockContent";
+import { getPostBySlug, getPosts } from "@/lib/api";
+import { renderMarkdown } from "@/lib/markdown";
 
 type Params = { slug: string };
 
@@ -16,7 +18,8 @@ function formatDate(iso: string) {
   });
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const posts = await getPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -26,7 +29,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -43,7 +46,7 @@ export async function generateMetadata({
 
 export default async function PostDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -74,13 +77,16 @@ export default async function PostDetailPage({ params }: { params: Promise<Param
             {post.title}
           </h1>
 
-          <div className="mt-8 flex flex-col gap-4">
-            {post.content.map((paragraph, i) => (
-              <p key={i} className="text-base leading-relaxed text-navy-900/70">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {post.coverImageUrl && (
+            <div className="relative mt-6 aspect-video w-full overflow-hidden rounded-2xl bg-navy-900/5">
+              <Image src={post.coverImageUrl} alt={post.title} fill className="object-contain" />
+            </div>
+          )}
+
+          <div
+            className="prose-content mt-8 text-base text-navy-900/70"
+            dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
+          />
         </Reveal>
       </div>
     </section>

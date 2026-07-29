@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, PenSquare } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { posts } from "@/lib/mockContent";
+import { getPosts } from "@/lib/api";
 
 const description =
   "Announcements, study tips, and updates from Unnat Classes, posted by our teachers.";
@@ -23,7 +24,9 @@ function formatDate(iso: string) {
   });
 }
 
-export default function PostsPage() {
+export default async function PostsPage() {
+  const posts = await getPosts();
+
   return (
     <>
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
@@ -48,9 +51,15 @@ export default function PostsPage() {
                   href={`/resources/posts/${post.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-navy-900/5 bg-cream p-7 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
-                    <PenSquare className="h-6 w-6" />
-                  </div>
+                  {post.coverImageUrl ? (
+                    <div className="relative -mx-7 -mt-7 mb-1 aspect-video overflow-hidden rounded-t-2xl bg-navy-900/5">
+                      <Image src={post.coverImageUrl} alt={post.title} fill className="object-contain" />
+                    </div>
+                  ) : (
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
+                      <PenSquare className="h-6 w-6" />
+                    </div>
+                  )}
 
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">

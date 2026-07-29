@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Newspaper } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { currentAffairs } from "@/lib/mockContent";
+import { getCurrentAffairs } from "@/lib/api";
 
 const description =
   "Regular current affairs updates for GS Classes and competitive exam aspirants, posted by our teachers.";
@@ -27,7 +28,9 @@ function formatDate(iso: string) {
   });
 }
 
-export default function CurrentAffairsPage() {
+export default async function CurrentAffairsPage() {
+  const currentAffairs = await getCurrentAffairs();
+
   return (
     <>
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
@@ -54,9 +57,21 @@ export default function CurrentAffairsPage() {
                   href={`/resources/current-affairs/${item.slug}`}
                   className="group flex flex-col gap-4 rounded-2xl border border-navy-900/5 bg-cream p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:flex-row sm:items-start"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
-                    <Newspaper className="h-6 w-6" />
-                  </div>
+                  {item.coverImageUrl ? (
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-navy-900/5 sm:h-20 sm:w-20">
+                      <Image
+                        src={item.coverImageUrl}
+                        alt={item.title}
+                        width={96}
+                        height={96}
+                        className="h-full w-full rounded-xl object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
+                      <Newspaper className="h-6 w-6" />
+                    </div>
+                  )}
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">

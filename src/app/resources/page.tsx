@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FileText, Newspaper, PenSquare, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { notes, currentAffairs, posts } from "@/lib/mockContent";
+import { getNotes, getCurrentAffairs, getPosts } from "@/lib/api";
 
 const description =
   "Study notes, current affairs updates, and posts shared by our teachers — all in one place.";
@@ -15,31 +15,37 @@ export const metadata: Metadata = {
   twitter: { title: "Resources | Unnat Classes", description },
 };
 
-const sections = [
-  {
-    href: "/resources/notes",
-    icon: FileText,
-    label: "Notes",
-    description: "Downloadable subject notes uploaded by our teachers.",
-    count: notes.length,
-  },
-  {
-    href: "/resources/current-affairs",
-    icon: Newspaper,
-    label: "Current Affairs",
-    description: "Regular updates on national and international events for GS students.",
-    count: currentAffairs.length,
-  },
-  {
-    href: "/resources/posts",
-    icon: PenSquare,
-    label: "Posts",
-    description: "Announcements, study tips, and updates from Unnat Classes.",
-    count: posts.length,
-  },
-];
+export default async function ResourcesPage() {
+  const [notes, currentAffairs, posts] = await Promise.all([
+    getNotes(),
+    getCurrentAffairs(),
+    getPosts(),
+  ]);
 
-export default function ResourcesPage() {
+  const sections = [
+    {
+      href: "/resources/notes",
+      icon: FileText,
+      label: "Notes",
+      description: "Downloadable subject notes uploaded by our teachers.",
+      count: notes.length,
+    },
+    {
+      href: "/resources/current-affairs",
+      icon: Newspaper,
+      label: "Current Affairs",
+      description: "Regular updates on national and international events for GS students.",
+      count: currentAffairs.length,
+    },
+    {
+      href: "/resources/posts",
+      icon: PenSquare,
+      label: "Posts",
+      description: "Announcements, study tips, and updates from Unnat Classes.",
+      count: posts.length,
+    },
+  ];
+
   return (
     <>
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">

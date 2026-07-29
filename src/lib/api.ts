@@ -1,0 +1,76 @@
+const API_BASE_URL = process.env.API_BASE_URL ?? "http://localhost:8080";
+
+export type Note = {
+  id: number;
+  slug: string;
+  title: string;
+  subject: string;
+  classRange: string;
+  fileType: string;
+  fileSize: string;
+  fileUrl: string;
+  description: string;
+  uploadedAt: string;
+  published: boolean;
+};
+
+export type CurrentAffair = {
+  id: number;
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  summary: string;
+  content: string[];
+  coverImageUrl: string | null;
+  published: boolean;
+};
+
+export type Post = {
+  id: number;
+  slug: string;
+  title: string;
+  date: string;
+  author: string;
+  tag: string;
+  excerpt: string;
+  content: string[];
+  coverImageUrl: string | null;
+  published: boolean;
+};
+
+export function resolveFileUrl(path: string): string {
+  return path.startsWith("http") ? path : `${API_BASE_URL}${path}`;
+}
+
+async function apiGet<T>(path: string): Promise<T | null> {
+  try {
+    const res = await fetch(`${API_BASE_URL}${path}`, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as T;
+  } catch {
+    return null;
+  }
+}
+
+export async function getNotes(): Promise<Note[]> {
+  return (await apiGet<Note[]>("/api/notes?published=true")) ?? [];
+}
+
+export async function getCurrentAffairs(): Promise<CurrentAffair[]> {
+  return (await apiGet<CurrentAffair[]>("/api/current-affairs?published=true")) ?? [];
+}
+
+export async function getCurrentAffairBySlug(slug: string): Promise<CurrentAffair | null> {
+  const item = await apiGet<CurrentAffair>(`/api/current-affairs/${slug}`);
+  return item && item.published ? item : null;
+}
+
+export async function getPosts(): Promise<Post[]> {
+  return (await apiGet<Post[]>("/api/posts?published=true")) ?? [];
+}
+
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const post = await apiGet<Post>(`/api/posts/${slug}`);
+  return post && post.published ? post : null;
+}
