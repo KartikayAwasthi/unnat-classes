@@ -21,7 +21,9 @@ import {
 export const SITE = {
   name: "Unnat Classes",
   // This single value feeds metadataBase, canonical URLs, sitemap.xml, robots.txt, and OG/Twitter tags.
-  url: "https://unnatclasses.in",
+  // Must match the domain that actually serves 200s (apex unnatclasses.in redirects here) —
+  // a canonical URL that itself redirects stops Google from associating structured data (e.g. logo) with the page.
+  url: "https://www.unnatclasses.in",
   tagline: "Building Strong Foundation for Bright Futures.",
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
