@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap, Phone, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  GraduationCap,
+  Newspaper,
+  Phone,
+  Sparkles,
+} from "lucide-react";
 import { SITE, stats } from "@/lib/data";
 
 export default function Hero() {
@@ -49,6 +55,13 @@ export default function Hero() {
                 <Sparkles className="h-4 w-4 shrink-0" />
                 Competition Batch: GS Classes
               </span>
+              <Link
+                href="/resources/current-affairs"
+                className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-2.5 text-xs font-bold text-navy-950 shadow-lg shadow-gold-500/20 transition-transform hover:scale-105 sm:px-5 sm:text-sm"
+              >
+                <Newspaper className="h-4 w-4 shrink-0" />
+                Daily Current Affairs
+              </Link>
             </div>
             <span className="text-xs font-medium text-white/50 sm:text-sm">
               {SITE.classesNote}
