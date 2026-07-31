@@ -10,19 +10,20 @@
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
-    "isomorphic-dompurify": "^3.19.0",
     "lucide-react": "^1.25.0",
     "marked": "^18.0.7",
     "next": "16.2.11",
     "pdfjs-dist": "^6.2.108",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sanitize-html": "^2.17.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",
