@@ -72,14 +72,14 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 xl:grid-cols-5">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
-                className="text-center lg:text-left"
+                className="min-w-0 text-center lg:text-left"
               >
                 <div className="font-heading text-2xl font-bold text-gold-400 sm:text-3xl">
                   {stat.value}

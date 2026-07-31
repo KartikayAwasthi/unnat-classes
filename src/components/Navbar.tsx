@@ -43,7 +43,55 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
-            const active = pathname === link.href;
+            const active =
+              pathname === link.href ||
+              link.children?.some((child) => pathname === child.href);
+
+            if (link.children) {
+              return (
+                <div key={link.href} className="group relative">
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      active
+                        ? "text-navy-900"
+                        : "text-navy-700/80 hover:text-navy-900"
+                    }`}
+                  >
+                    {active && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-gold-400/25"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative">{link.label}</span>
+                  </Link>
+                  <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                    <div className="min-w-[180px] rounded-xl border border-navy-900/10 bg-white p-1.5 shadow-lg">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          aria-current={
+                            pathname === child.href ? "page" : undefined
+                          }
+                          className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                            pathname === child.href
+                              ? "bg-gold-400/20 text-navy-900"
+                              : "text-navy-700/80 hover:bg-navy-900/5 hover:text-navy-900"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={link.href}
@@ -102,19 +150,41 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-1 px-5 py-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  aria-current={pathname === link.href ? "page" : undefined}
-                  className={`rounded-lg px-3 py-2.5 text-base font-medium ${
-                    pathname === link.href
-                      ? "bg-gold-400/20 text-navy-900"
-                      : "text-navy-700/90"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={pathname === link.href ? "page" : undefined}
+                    className={`block rounded-lg px-3 py-2.5 text-base font-medium ${
+                      pathname === link.href
+                        ? "bg-gold-400/20 text-navy-900"
+                        : "text-navy-700/90"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children && (
+                    <div className="ml-3 flex flex-col gap-1 border-l border-navy-900/10 pl-3">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setOpen(false)}
+                          aria-current={
+                            pathname === child.href ? "page" : undefined
+                          }
+                          className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                            pathname === child.href
+                              ? "bg-gold-400/20 text-navy-900"
+                              : "text-navy-700/70"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <a
                 href={SITE.phoneHref}

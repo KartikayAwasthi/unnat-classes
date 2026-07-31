@@ -115,6 +115,7 @@ export const features = [
 
 export const stats = [
   { label: "Classes Offered", value: "1–12" },
+  { label: "Competition Batch", value: "GS Classes" },
   { label: "Years of Experience", value: "8+" },
   { label: "Batch Size", value: "Small" },
   { label: "Dedicated Teachers", value: "100%" },
@@ -240,7 +241,15 @@ export const subjectsByStage = [
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
-  { href: "/resources", label: "Resources" },
+  {
+    href: "/resources",
+    label: "Resources",
+    children: [
+      { href: "/resources/notes", label: "Notes" },
+      { href: "/resources/current-affairs", label: "Current Affairs" },
+      { href: "/resources/posts", label: "Posts" },
+    ],
+  },
   { href: "/teacher", label: "Our Teacher" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
