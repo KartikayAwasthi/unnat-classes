@@ -54,8 +54,8 @@ export default async function CurrentAffairDetailPage({
   if (!item) notFound();
 
   return (
-    <section className="bg-white py-16 sm:py-24">
-      <div className="mx-auto max-w-2xl px-5 sm:px-8">
+    <section className="bg-white py-10 sm:py-24">
+      <div className="mx-auto max-w-4xl px-4 sm:px-8 lg:px-10">
         <Reveal>
           <div className="flex items-center justify-between gap-4">
             <Link
@@ -77,18 +77,25 @@ export default async function CurrentAffairDetailPage({
             </span>
           </div>
 
-          <h1 className="mt-3 font-heading text-3xl font-extrabold text-navy-900 sm:text-4xl">
+          <h1 className="mt-3 font-heading text-2xl font-extrabold text-navy-900 sm:text-4xl lg:text-5xl">
             {item.title}
           </h1>
 
           {item.coverImageUrl && (
-            <div className="relative mt-6 aspect-video w-full overflow-hidden rounded-2xl bg-navy-900/5">
-              <Image src={item.coverImageUrl} alt={item.title} fill className="object-contain" />
+            <div className="relative mt-6 h-[280px] w-full overflow-hidden rounded-2xl bg-navy-900/5 sm:h-[420px] lg:h-[520px]">
+              <Image
+                src={item.coverImageUrl}
+                alt={item.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 896px"
+                className="object-contain"
+                priority
+              />
             </div>
           )}
 
           <div
-            className="prose-content mt-8 text-base text-navy-900/70"
+            className="prose-content mt-8 text-[15px] leading-relaxed text-navy-900/70 sm:text-lg"
             dangerouslySetInnerHTML={{ __html: renderMarkdown(item.content) }}
           />
         </Reveal>
