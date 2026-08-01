@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Download, Eye, FileText, X } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import ShareButton from "@/components/ShareButton";
 import PdfViewer from "@/components/resources/PdfViewer";
 import DocViewer from "@/components/resources/DocViewer";
 import type { Note } from "@/lib/api";
@@ -89,6 +90,12 @@ export default function NotesGrid({ notes }: { notes: Note[] }) {
                 {activeNote.title}
               </h3>
               <div className="flex shrink-0 items-center gap-2">
+                <ShareButton
+                  title={activeNote.title}
+                  text={`${activeNote.subject} notes from Unnat Classes`}
+                  url={activeNote.fileUrl}
+                  variant="icon"
+                />
                 <a
                   href={activeNote.fileUrl}
                   target="_blank"
