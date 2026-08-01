@@ -49,45 +49,43 @@ export default async function CurrentAffairsPage() {
       </section>
 
       <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <div className="flex flex-col gap-6">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {currentAffairs.map((item, i) => (
               <Reveal key={item.slug} delay={i * 0.08}>
                 <Link
                   href={`/resources/current-affairs/${item.slug}`}
-                  className="group flex flex-col gap-4 rounded-2xl border border-navy-900/5 bg-cream p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:flex-row sm:items-start"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-900/5 bg-cream shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
                 >
-                  {item.coverImageUrl ? (
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-navy-900/5 sm:h-20 sm:w-20">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-navy-900">
+                    {item.coverImageUrl ? (
                       <Image
                         src={item.coverImageUrl}
                         alt={item.title}
-                        width={96}
-                        height={96}
-                        className="h-full w-full rounded-xl object-contain"
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                    </div>
-                  ) : (
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-400">
-                      <Newspaper className="h-6 w-6" />
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-gold-400/20 px-3 py-1 text-xs font-bold text-gold-600">
-                        {item.category}
-                      </span>
-                      <span className="text-xs font-semibold text-navy-900/40">
-                        {formatDate(item.date)}
-                      </span>
-                    </div>
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Newspaper className="h-12 w-12 text-gold-400" />
+                      </div>
+                    )}
+                    <span className="absolute left-4 top-4 rounded-full bg-gold-400/95 px-3 py-1 text-xs font-bold text-navy-950 shadow-sm">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-7">
+                    <span className="text-xs font-semibold text-navy-900/40">
+                      {formatDate(item.date)}
+                    </span>
                     <h2 className="mt-2 font-heading text-lg font-bold text-navy-900">
                       {item.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-900/60">
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-900/60">
                       {item.summary}
                     </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 transition-transform group-hover:translate-x-1">
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 transition-transform group-hover:translate-x-1">
                       Read more <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
