@@ -63,6 +63,19 @@ export type Post = {
   published: boolean;
 };
 
+export type Video = {
+  id: number;
+  slug: string;
+  title: string;
+  youtubeUrl: string;
+  videoId: string;
+  thumbnailUrl: string;
+  category: string;
+  description: string;
+  date: string;
+  published: boolean;
+};
+
 export function resolveFileUrl(path: string): string {
   return path.startsWith("http") ? path : `${API_BASE_URL}${path}`;
 }
@@ -115,4 +128,13 @@ export async function getPosts(): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   const post = await apiGet<Post>(`/api/posts/${slug}`);
   return post && post.published ? post : null;
+}
+
+export async function getVideos(): Promise<Video[]> {
+  return (await apiGet<Video[]>("/api/videos?published=true")) ?? [];
+}
+
+export async function getVideoBySlug(slug: string): Promise<Video | null> {
+  const video = await apiGet<Video>(`/api/videos/${slug}`);
+  return video && video.published ? video : null;
 }

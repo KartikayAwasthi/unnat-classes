@@ -252,6 +252,7 @@ export const navLinks = [
       { href: "/resources/current-affairs", label: "Current Affairs" },
       { href: "/resources/daily-current-affairs", label: "Daily Current Affairs" },
       { href: "/resources/posts", label: "Posts" },
+      { href: "/resources/videos", label: "Videos" },
     ],
   },
   { href: "/exams", label: "Exams" },

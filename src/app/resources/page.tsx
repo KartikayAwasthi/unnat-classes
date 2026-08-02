@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileText, Images, Newspaper, PenSquare, ArrowRight } from "lucide-react";
+import { FileText, Images, Newspaper, PenSquare, PlayCircle, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { getNotes, getCurrentAffairs, getDailyCurrentAffairs, getPosts } from "@/lib/api";
+import { getNotes, getCurrentAffairs, getDailyCurrentAffairs, getPosts, getVideos } from "@/lib/api";
 
 const description =
   "Study notes, current affairs updates, and posts shared by our teachers — all in one place.";
@@ -16,11 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ResourcesPage() {
-  const [notes, currentAffairs, dailyCurrentAffairs, posts] = await Promise.all([
+  const [notes, currentAffairs, dailyCurrentAffairs, posts, videos] = await Promise.all([
     getNotes(),
     getCurrentAffairs(),
     getDailyCurrentAffairs(),
     getPosts(),
+    getVideos(),
   ]);
 
   const sections = [
@@ -51,6 +52,13 @@ export default async function ResourcesPage() {
       label: "Posts",
       description: "Announcements, study tips, and updates from Unnat Classes.",
       count: posts.length,
+    },
+    {
+      href: "/resources/videos",
+      icon: PlayCircle,
+      label: "Videos",
+      description: "Free videos from our YouTube channel — watch right on the site.",
+      count: videos.length,
     },
   ];
 
