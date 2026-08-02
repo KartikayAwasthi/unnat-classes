@@ -2,7 +2,8 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import ImageLightbox from "./ImageLightbox";
 
 type Props = {
   images: string[];
@@ -13,6 +14,7 @@ type Props = {
 export default function DailyCurrentAffairCarousel({ images, alt, priority }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   function scrollToIndex(index: number) {
     const track = trackRef.current;
@@ -35,7 +37,13 @@ export default function DailyCurrentAffairCarousel({ images, alt, priority }: Pr
         className="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
         {images.map((src, i) => (
-          <div key={src + i} className="relative aspect-square w-full shrink-0 snap-center">
+          <button
+            key={src + i}
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            aria-label="View full size image"
+            className="group/image relative aspect-square w-full shrink-0 snap-center"
+          >
             <Image
               src={src}
               alt={`${alt} — image ${i + 1} of ${images.length}`}
@@ -44,7 +52,12 @@ export default function DailyCurrentAffairCarousel({ images, alt, priority }: Pr
               className="object-contain"
               priority={priority && i === 0}
             />
-          </div>
+            <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover/image:bg-black/10 group-hover/image:opacity-100">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-navy-950 shadow-md">
+                <ZoomIn className="h-4 w-4" />
+              </span>
+            </span>
+          </button>
         ))}
       </div>
 
@@ -84,6 +97,16 @@ export default function DailyCurrentAffairCarousel({ images, alt, priority }: Pr
             ))}
           </div>
         </>
+      )}
+
+      {lightboxOpen && (
+        <ImageLightbox
+          images={images}
+          index={active}
+          alt={alt}
+          onClose={() => setLightboxOpen(false)}
+          onIndexChange={setActive}
+        />
       )}
     </div>
   );

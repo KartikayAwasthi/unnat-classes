@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
+import DailyCurrentAffairImageStack from "@/components/resources/DailyCurrentAffairImageStack";
 import { getDailyCurrentAffairBySlug, getDailyCurrentAffairs } from "@/lib/api";
 
 type Params = { slug: string };
@@ -77,26 +77,11 @@ export default async function DailyCurrentAffairDetailPage({
             {formatDate(item.date)}
           </span>
 
-          <div className="mt-4 flex flex-col gap-4">
-            {item.images.map((src, i) => (
-              <div
-                key={src + i}
-                className="relative h-[70vh] w-full overflow-hidden rounded-2xl bg-navy-900 sm:h-[560px]"
-              >
-                <Image
-                  src={src}
-                  alt={
-                    item.caption
-                      ? `${item.caption} — image ${i + 1} of ${item.images.length}`
-                      : `Daily current affairs — ${formatDate(item.date)} — image ${i + 1} of ${item.images.length}`
-                  }
-                  fill
-                  sizes="(min-width: 1024px) 672px, 100vw"
-                  className="object-contain"
-                  priority={i === 0}
-                />
-              </div>
-            ))}
+          <div className="mt-4">
+            <DailyCurrentAffairImageStack
+              images={item.images}
+              alt={item.caption ?? `Daily current affairs — ${formatDate(item.date)}`}
+            />
           </div>
 
           {item.caption && (
