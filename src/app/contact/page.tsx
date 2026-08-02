@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import { SITE } from "@/lib/data";
@@ -64,6 +64,23 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-3.5">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-400">
+                      <Mail className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-white/50">
+                        Email Us
+                      </p>
+                      <a
+                        href={SITE.emailHref}
+                        className="text-lg font-bold text-white hover:text-gold-400"
+                      >
+                        {SITE.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-400">
                       <MapPin className="h-5 w-5" />
                     </span>
                     <div>
@@ -102,6 +119,13 @@ export default function ContactPage() {
                 >
                   <Phone className="h-4 w-4" />
                   Call {SITE.phone}
+                </a>
+                <a
+                  href={SITE.emailHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <Mail className="h-4 w-4 text-gold-400" />
+                  Email Us
                 </a>
                 <a
                   href={SITE.mapsHref}

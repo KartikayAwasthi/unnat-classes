@@ -33,6 +33,8 @@ export const SITE = {
     "Class 1–10: All Subjects · Class 11–12: Humanities Stream · Competition Batch: GS Classes",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
+  email: "unnatclass@gmail.com",
+  emailHref: "mailto:unnatclass@gmail.com",
   whatsappHref:
     "https://wa.me/919821602932?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20admissions%20at%20Unnat%20Classes.",
   address: "A-7, Ganesh Nagar Colony, New Bhupani, Near Puri Aman Villa, Sector 89, Faridabad",

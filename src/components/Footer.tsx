@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone, BookOpen } from "lucide-react";
+import { MapPin, Phone, Mail, BookOpen } from "lucide-react";
 import Logo from "./Logo";
 import { SITE, navLinks } from "@/lib/data";
 
@@ -127,6 +127,12 @@ export default function Footer() {
               <Phone className="h-4 w-4 shrink-0 text-gold-400" />
               <a href={SITE.phoneHref} className="hover:text-white">
                 {SITE.phone}
+              </a>
+            </li>
+            <li className="flex items-center gap-2.5">
+              <Mail className="h-4 w-4 shrink-0 text-gold-400" />
+              <a href={SITE.emailHref} className="hover:text-white">
+                {SITE.email}
               </a>
             </li>
             <li className="flex items-center gap-2.5">

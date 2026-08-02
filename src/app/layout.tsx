@@ -75,6 +75,7 @@ const structuredData = {
   url: SITE.url,
   logo: `${SITE.url}/images/logo.png`,
   telephone: SITE.phoneHref.replace("tel:", ""),
+  email: SITE.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.address,
