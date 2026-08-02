@@ -41,7 +41,7 @@ export default function DailyCurrentAffairCarousel({ images, alt, priority }: Pr
               alt={`${alt} — image ${i + 1} of ${images.length}`}
               fill
               sizes="(min-width: 1024px) 640px, 100vw"
-              className="object-cover"
+              className="object-contain"
               priority={priority && i === 0}
             />
           </div>
