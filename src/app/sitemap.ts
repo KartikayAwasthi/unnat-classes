@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/data";
-import { getCurrentAffairs, getDailyCurrentAffairs, getPosts, resolveFileUrl } from "@/lib/api";
+import { getCurrentAffairs, getDailyCurrentAffairs, getExams, getPosts, resolveFileUrl } from "@/lib/api";
 import { galleryMedia, type GalleryMedia } from "@/lib/gallery";
 
 type StaticRoute = {
@@ -49,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })),
     },
     { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/exams", priority: 0.9, changeFrequency: "daily" },
     { path: "/resources", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/notes", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/posts", priority: 0.7, changeFrequency: "daily" },
@@ -64,10 +65,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const [posts, currentAffairs, dailyCurrentAffairs] = await Promise.all([
+  const [posts, currentAffairs, dailyCurrentAffairs, exams] = await Promise.all([
     getPosts(),
     getCurrentAffairs(),
     getDailyCurrentAffairs(),
+    getExams(),
   ]);
 
   const postRoutes: StaticRoute[] = posts.map((post) => ({
@@ -91,7 +93,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: item.images.map((img) => resolveFileUrl(img)),
   }));
 
-  return [...staticRoutes, ...postRoutes, ...currentAffairRoutes, ...dailyCurrentAffairRoutes].map(
+  const examRoutes: StaticRoute[] = exams.map((item) => ({
+    path: `/exams/${item.slug}`,
+    priority: 0.8,
+    changeFrequency: "monthly",
+    images: item.coverImageUrl ? [resolveFileUrl(item.coverImageUrl)] : undefined,
+  }));
+
+  return [...staticRoutes, ...postRoutes, ...currentAffairRoutes, ...dailyCurrentAffairRoutes, ...examRoutes].map(
     (route) => ({
       url: abs(route.path),
       lastModified: new Date(),

@@ -35,6 +35,21 @@ export type DailyCurrentAffair = {
   published: boolean;
 };
 
+export type Exam = {
+  id: number;
+  slug: string;
+  title: string;
+  category: string;
+  examDate: string | null;
+  summary: string;
+  aboutExam: string;
+  examPattern: string;
+  syllabus: string;
+  coverImageUrl: string | null;
+  officialLink: string | null;
+  published: boolean;
+};
+
 export type Post = {
   id: number;
   slug: string;
@@ -81,6 +96,15 @@ export async function getDailyCurrentAffairs(): Promise<DailyCurrentAffair[]> {
 
 export async function getDailyCurrentAffairBySlug(slug: string): Promise<DailyCurrentAffair | null> {
   const item = await apiGet<DailyCurrentAffair>(`/api/daily-current-affairs/${slug}`);
+  return item && item.published ? item : null;
+}
+
+export async function getExams(): Promise<Exam[]> {
+  return (await apiGet<Exam[]>("/api/exams?published=true")) ?? [];
+}
+
+export async function getExamBySlug(slug: string): Promise<Exam | null> {
+  const item = await apiGet<Exam>(`/api/exams/${slug}`);
   return item && item.published ? item : null;
 }
 

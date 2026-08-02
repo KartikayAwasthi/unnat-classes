@@ -254,6 +254,7 @@ export const navLinks = [
       { href: "/resources/posts", label: "Posts" },
     ],
   },
+  { href: "/exams", label: "Exams" },
   { href: "/teacher", label: "Our Teacher" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
