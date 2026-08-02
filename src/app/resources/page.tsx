@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileText, Newspaper, PenSquare, ArrowRight } from "lucide-react";
+import { FileText, Images, Newspaper, PenSquare, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { getNotes, getCurrentAffairs, getPosts } from "@/lib/api";
+import { getNotes, getCurrentAffairs, getDailyCurrentAffairs, getPosts } from "@/lib/api";
 
 const description =
   "Study notes, current affairs updates, and posts shared by our teachers — all in one place.";
@@ -16,9 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ResourcesPage() {
-  const [notes, currentAffairs, posts] = await Promise.all([
+  const [notes, currentAffairs, dailyCurrentAffairs, posts] = await Promise.all([
     getNotes(),
     getCurrentAffairs(),
+    getDailyCurrentAffairs(),
     getPosts(),
   ]);
 
@@ -36,6 +37,13 @@ export default async function ResourcesPage() {
       label: "Current Affairs",
       description: "Regular updates on national and international events for GS students.",
       count: currentAffairs.length,
+    },
+    {
+      href: "/resources/daily-current-affairs",
+      icon: Images,
+      label: "Daily Current Affairs",
+      description: "Quick, image-first current affairs updates — swipe through each day's highlights.",
+      count: dailyCurrentAffairs.length,
     },
     {
       href: "/resources/posts",
@@ -65,7 +73,7 @@ export default async function ResourcesPage() {
 
       <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {sections.map((section, i) => (
               <Reveal key={section.href} delay={i * 0.1}>
                 <Link

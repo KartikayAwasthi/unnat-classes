@@ -26,6 +26,15 @@ export type CurrentAffair = {
   published: boolean;
 };
 
+export type DailyCurrentAffair = {
+  id: number;
+  slug: string;
+  caption: string | null;
+  date: string;
+  images: string[];
+  published: boolean;
+};
+
 export type Post = {
   id: number;
   slug: string;
@@ -63,6 +72,15 @@ export async function getCurrentAffairs(): Promise<CurrentAffair[]> {
 
 export async function getCurrentAffairBySlug(slug: string): Promise<CurrentAffair | null> {
   const item = await apiGet<CurrentAffair>(`/api/current-affairs/${slug}`);
+  return item && item.published ? item : null;
+}
+
+export async function getDailyCurrentAffairs(): Promise<DailyCurrentAffair[]> {
+  return (await apiGet<DailyCurrentAffair[]>("/api/daily-current-affairs?published=true")) ?? [];
+}
+
+export async function getDailyCurrentAffairBySlug(slug: string): Promise<DailyCurrentAffair | null> {
+  const item = await apiGet<DailyCurrentAffair>(`/api/daily-current-affairs/${slug}`);
   return item && item.published ? item : null;
 }
 

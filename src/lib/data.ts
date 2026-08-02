@@ -248,6 +248,7 @@ export const navLinks = [
     children: [
       { href: "/resources/notes", label: "Notes" },
       { href: "/resources/current-affairs", label: "Current Affairs" },
+      { href: "/resources/daily-current-affairs", label: "Daily Current Affairs" },
       { href: "/resources/posts", label: "Posts" },
     ],
   },
