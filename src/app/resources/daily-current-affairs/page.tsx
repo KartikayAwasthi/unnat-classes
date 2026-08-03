@@ -51,14 +51,14 @@ export default async function DailyCurrentAffairsPage() {
       </section>
 
       <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
           {entries.length === 0 ? (
             <div className="flex flex-col items-center gap-3 py-16 text-center text-navy-900/50">
               <Images className="h-10 w-10 text-gold-400" strokeWidth={1.5} />
               <p>No updates posted yet — check back soon.</p>
             </div>
           ) : (
-            <div className="flex flex-col gap-12">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-8">
               {entries.map((entry, i) => (
                 <Reveal key={entry.slug} delay={i * 0.06}>
                   <article className="overflow-hidden rounded-2xl border border-navy-900/5 bg-cream shadow-sm">
