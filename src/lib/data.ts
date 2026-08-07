@@ -258,5 +258,6 @@ export const navLinks = [
   { href: "/exams", label: "Exams" },
   { href: "/teacher", label: "Our Teacher" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/reels", label: "Reels" },
   { href: "/contact", label: "Contact" },
 ];

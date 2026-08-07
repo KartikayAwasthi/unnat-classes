@@ -1,6 +1,13 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/data";
-import { getCurrentAffairs, getDailyCurrentAffairs, getExams, getPosts, resolveFileUrl } from "@/lib/api";
+import {
+  getCurrentAffairs,
+  getDailyCurrentAffairs,
+  getExams,
+  getInstagramPosts,
+  getPosts,
+  resolveFileUrl,
+} from "@/lib/api";
 import { galleryMedia, type GalleryMedia } from "@/lib/gallery";
 
 type StaticRoute = {
@@ -65,12 +72,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const [posts, currentAffairs, dailyCurrentAffairs, exams] = await Promise.all([
+  const [posts, currentAffairs, dailyCurrentAffairs, exams, instagramPosts] = await Promise.all([
     getPosts(),
     getCurrentAffairs(),
     getDailyCurrentAffairs(),
     getExams(),
+    getInstagramPosts(),
   ]);
+
+  staticRoutes.push({
+    path: "/reels",
+    priority: 0.6,
+    changeFrequency: "weekly",
+    images: instagramPosts.map((item) => resolveFileUrl(item.thumbnailUrl)),
+  });
 
   const postRoutes: StaticRoute[] = posts.map((post) => ({
     path: `/resources/posts/${post.slug}`,

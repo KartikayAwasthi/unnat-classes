@@ -76,6 +76,20 @@ export type Video = {
   published: boolean;
 };
 
+export type InstagramMediaType = "REEL" | "POST";
+
+export type InstagramPost = {
+  id: number;
+  slug: string;
+  title: string;
+  permalink: string;
+  mediaType: InstagramMediaType;
+  thumbnailUrl: string;
+  caption: string | null;
+  date: string;
+  published: boolean;
+};
+
 export function resolveFileUrl(path: string): string {
   return path.startsWith("http") ? path : `${API_BASE_URL}${path}`;
 }
@@ -137,4 +151,8 @@ export async function getVideos(): Promise<Video[]> {
 export async function getVideoBySlug(slug: string): Promise<Video | null> {
   const video = await apiGet<Video>(`/api/videos/${slug}`);
   return video && video.published ? video : null;
+}
+
+export async function getInstagramPosts(): Promise<InstagramPost[]> {
+  return (await apiGet<InstagramPost[]>("/api/instagram-posts?published=true")) ?? [];
 }
