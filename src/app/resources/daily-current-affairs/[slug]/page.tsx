@@ -11,6 +11,8 @@ import { articleSchema, breadcrumbList } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
+export const dynamic = "force-dynamic";
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-IN", {
     day: "numeric",

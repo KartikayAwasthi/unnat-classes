@@ -13,6 +13,8 @@ import { breadcrumbList, examEventSchema } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const exams = await getExams();
   return exams.map((item) => ({ slug: item.slug }));
