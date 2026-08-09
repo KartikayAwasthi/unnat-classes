@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
 import { SITE, classGroups, features, subjectsByStage } from "@/lib/data";
+import { breadcrumbList, courseListSchema } from "@/lib/structuredData";
 
 const description =
   "Unnat Classes offers structured coaching for Class 1 to 12 — all subjects for Class 1 to 10, a dedicated Humanities stream for Class 11 to 12, and a Competition Batch (GS Classes) for competitive exam aspirants.";
@@ -17,6 +19,15 @@ export const metadata: Metadata = {
 export default function CoursesPage() {
   return (
     <>
+      <StructuredData
+        data={[
+          ...courseListSchema(classGroups),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Courses", path: "/courses" },
+          ]),
+        ]}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

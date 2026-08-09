@@ -4,8 +4,10 @@ import { ArrowRight, Images } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
 import DailyCurrentAffairCarousel from "@/components/resources/DailyCurrentAffairCarousel";
+import StructuredData from "@/components/StructuredData";
 import { getDailyCurrentAffairs } from "@/lib/api";
 import { SITE } from "@/lib/data";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Daily current affairs updates in pictures — quick, image-first snapshots posted by our teachers for GS Classes students.";
@@ -35,6 +37,13 @@ export default async function DailyCurrentAffairsPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Daily Current Affairs", path: "/resources/daily-current-affairs" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

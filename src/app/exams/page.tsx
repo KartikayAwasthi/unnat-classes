@@ -4,7 +4,9 @@ import Link from "next/link";
 import { ArrowRight, GraduationCap } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ExamDateChip from "@/components/exams/ExamDateChip";
+import StructuredData from "@/components/StructuredData";
 import { getExams } from "@/lib/api";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Competitive exam notifications — UPSC, SSC, Banking, State PSC and more — with syllabus, exam pattern, and key dates for GS Classes aspirants.";
@@ -26,6 +28,12 @@ export default async function ExamsPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Exams", path: "/exams" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

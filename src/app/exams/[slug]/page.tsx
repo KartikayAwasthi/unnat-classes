@@ -5,9 +5,11 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, GraduationCap } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
+import StructuredData from "@/components/StructuredData";
 import ExamDateChip from "@/components/exams/ExamDateChip";
 import { getExamBySlug, getExams } from "@/lib/api";
 import { renderMarkdown } from "@/lib/markdown";
+import { breadcrumbList, examEventSchema } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
@@ -49,6 +51,23 @@ export default async function ExamDetailPage({
 
   return (
     <section className="bg-white py-10 sm:py-24">
+      <StructuredData
+        data={[
+          examEventSchema({
+            name: item.title,
+            description: item.summary,
+            path: `/exams/${slug}`,
+            startDate: item.examDate,
+            image: item.coverImageUrl,
+            url: item.officialLink,
+          }),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Exams", path: "/exams" },
+            { name: item.title, path: `/exams/${slug}` },
+          ]),
+        ].filter((entry): entry is NonNullable<typeof entry> => entry !== null)}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-8 lg:px-10">
         <Reveal>
           <div className="flex items-center justify-between gap-4">

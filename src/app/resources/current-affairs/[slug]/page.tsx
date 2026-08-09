@@ -5,8 +5,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
+import StructuredData from "@/components/StructuredData";
 import { getCurrentAffairBySlug, getCurrentAffairs } from "@/lib/api";
 import { renderMarkdown } from "@/lib/markdown";
+import { articleSchema, breadcrumbList } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
@@ -55,6 +57,24 @@ export default async function CurrentAffairDetailPage({
 
   return (
     <section className="bg-white py-10 sm:py-24">
+      <StructuredData
+        data={[
+          articleSchema({
+            type: "NewsArticle",
+            headline: item.title,
+            description: item.summary,
+            path: `/resources/current-affairs/${slug}`,
+            datePublished: item.date,
+            image: item.coverImageUrl,
+          }),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Resources", path: "/resources" },
+            { name: "Current Affairs", path: "/resources/current-affairs" },
+            { name: item.title, path: `/resources/current-affairs/${slug}` },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-8 lg:px-10">
         <Reveal>
           <div className="flex items-center justify-between gap-4">

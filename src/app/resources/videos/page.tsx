@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import VideosGrid from "@/components/resources/VideosGrid";
+import StructuredData from "@/components/StructuredData";
 import { getVideos } from "@/lib/api";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Free videos from the Unnat Classes YouTube channel — watch lessons and explainers right on the site.";
@@ -19,6 +21,13 @@ export default async function VideosPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Videos", path: "/resources/videos" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

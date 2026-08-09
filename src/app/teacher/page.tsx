@@ -10,7 +10,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
 import { SITE, teacher } from "@/lib/data";
+import { breadcrumbList, personSchema } from "@/lib/structuredData";
 
 const description = `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 1 to 12.`;
 
@@ -25,6 +27,22 @@ export const metadata: Metadata = {
 export default function TeacherPage() {
   return (
     <>
+      <StructuredData
+        data={[
+          personSchema({
+            name: teacher.name,
+            jobTitle: teacher.role,
+            description,
+            path: "/teacher",
+            image: teacher.photo,
+            credentials: teacher.certifications,
+          }),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Our Teacher", path: "/teacher" },
+          ]),
+        ]}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-gold-500/15 blur-3xl" />

@@ -5,8 +5,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
+import StructuredData from "@/components/StructuredData";
 import { getPostBySlug, getPosts } from "@/lib/api";
 import { renderMarkdown } from "@/lib/markdown";
+import { articleSchema, breadcrumbList } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
@@ -51,6 +53,25 @@ export default async function PostDetailPage({ params }: { params: Promise<Param
 
   return (
     <section className="bg-white py-10 sm:py-24">
+      <StructuredData
+        data={[
+          articleSchema({
+            type: "BlogPosting",
+            headline: post.title,
+            description: post.excerpt,
+            path: `/resources/posts/${slug}`,
+            datePublished: post.date,
+            image: post.coverImageUrl,
+            author: post.author,
+          }),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Resources", path: "/resources" },
+            { name: "Posts", path: "/resources/posts" },
+            { name: post.title, path: `/resources/posts/${slug}` },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-8 lg:px-10">
         <Reveal>
           <div className="flex items-center justify-between gap-4">

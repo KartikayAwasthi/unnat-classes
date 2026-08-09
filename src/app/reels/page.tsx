@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ReelsGrid from "@/components/reels/ReelsGrid";
+import StructuredData from "@/components/StructuredData";
 import { SITE } from "@/lib/data";
 import { getInstagramPosts, getVideos } from "@/lib/api";
 import { buildReelFeed } from "@/lib/reels";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Reels and posts from the Unnat Classes Instagram and YouTube Shorts — watch them right here on the site.";
@@ -26,6 +28,12 @@ export default async function ReelsPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Reels", path: "/reels" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

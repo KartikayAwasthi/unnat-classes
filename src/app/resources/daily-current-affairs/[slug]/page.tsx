@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ShareButton from "@/components/ShareButton";
+import StructuredData from "@/components/StructuredData";
 import DailyCurrentAffairImageStack from "@/components/resources/DailyCurrentAffairImageStack";
 import { getDailyCurrentAffairBySlug, getDailyCurrentAffairs } from "@/lib/api";
+import { articleSchema, breadcrumbList } from "@/lib/structuredData";
 
 type Params = { slug: string };
 
@@ -55,8 +57,28 @@ export default async function DailyCurrentAffairDetailPage({
   const item = await getDailyCurrentAffairBySlug(slug);
   if (!item) notFound();
 
+  const title = item.caption ?? `Daily Current Affairs — ${formatDate(item.date)}`;
+
   return (
     <section className="bg-white py-10 sm:py-24">
+      <StructuredData
+        data={[
+          articleSchema({
+            type: "NewsArticle",
+            headline: title,
+            description: item.caption ?? `Daily current affairs update for ${formatDate(item.date)}.`,
+            path: `/resources/daily-current-affairs/${slug}`,
+            datePublished: item.date,
+            image: item.images[0] ?? null,
+          }),
+          breadcrumbList([
+            { name: "Home", path: "/" },
+            { name: "Resources", path: "/resources" },
+            { name: "Daily Current Affairs", path: "/resources/daily-current-affairs" },
+            { name: title, path: `/resources/daily-current-affairs/${slug}` },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-2xl px-4 sm:px-8">
         <Reveal>
           <div className="flex items-center justify-between gap-4">

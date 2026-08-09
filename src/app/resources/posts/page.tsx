@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, PenSquare } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
 import { getPosts } from "@/lib/api";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Announcements, study tips, and updates from Unnat Classes, posted by our teachers.";
@@ -29,6 +31,13 @@ export default async function PostsPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Posts", path: "/resources/posts" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import StructuredData from "@/components/StructuredData";
 import { SITE } from "@/lib/data";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "Get in touch with Unnat Classes to enroll your child for Class 1 to 12. Limited seats available.";
@@ -18,6 +20,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">

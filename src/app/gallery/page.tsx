@@ -3,8 +3,10 @@ import Image from "next/image";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ReelVideo from "@/components/gallery/ReelVideo";
+import StructuredData from "@/components/StructuredData";
 import { SITE } from "@/lib/data";
 import { galleryMedia } from "@/lib/gallery";
+import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
   "A glimpse into the classroom at Unnat Classes — real moments from lessons and teaching sessions.";
@@ -35,6 +37,12 @@ export default function GalleryPage() {
 
   return (
     <>
+      <StructuredData
+        data={breadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Gallery", path: "/gallery" },
+        ])}
+      />
       <section className="relative overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 bg-dotted opacity-[0.08]" />
         <Reveal className="relative mx-auto max-w-2xl px-5">
