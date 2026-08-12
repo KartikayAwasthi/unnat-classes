@@ -15,7 +15,6 @@ export default function ContactForm() {
     const data = new FormData(e.currentTarget);
     const name = (data.get("name") as string).trim();
     const phone = (data.get("phone") as string).trim();
-    const studentClass = data.get("class") as string;
     const message = (data.get("message") as string).trim();
 
     if (!name || !phone) {
@@ -35,7 +34,6 @@ export default function ContactForm() {
       "New enquiry from the website:",
       `Name: ${name}`,
       `Phone: ${phone}`,
-      `Class Interested In: ${studentClass}`,
       message ? `Message: ${message}` : null,
     ].filter(Boolean);
 
@@ -113,32 +111,6 @@ export default function ContactForm() {
                   className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
                 />
               </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="contact-class"
-                className="mb-1.5 block text-sm font-semibold text-navy-900"
-              >
-                Class Interested In
-              </label>
-              <select
-                id="contact-class"
-                name="class"
-                className="w-full rounded-xl border border-navy-900/10 bg-cream px-4 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
-              >
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((c) => (
-                  <option key={c} value={c}>
-                    Class {c}
-                  </option>
-                ))}
-                {[11, 12].map((c) => (
-                  <option key={c} value={c}>
-                    Class {c} (Humanities)
-                  </option>
-                ))}
-                <option value="gs-competition">Competition Batch (GS Classes)</option>
-              </select>
             </div>
 
             <div>

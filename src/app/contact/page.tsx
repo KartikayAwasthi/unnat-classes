@@ -7,7 +7,7 @@ import { SITE } from "@/lib/data";
 import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
-  "Get in touch with Unnat Classes to enroll your child for Class 11 to 12. Limited seats available.";
+  "Get in touch with Unnat Classes to enroll in our Competition Batch (GS Classes). Limited seats available.";
 
 export const metadata: Metadata = {
   title: "Contact",

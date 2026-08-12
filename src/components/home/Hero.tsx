@@ -49,11 +49,7 @@ export default function Hero() {
             <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-2.5 text-xs font-bold text-navy-950 shadow-lg shadow-gold-500/20 sm:px-5 sm:text-sm">
                 <GraduationCap className="h-4 w-4 shrink-0" />
-                For {SITE.classesRange}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-2.5 text-xs font-bold text-navy-950 shadow-lg shadow-gold-500/20 sm:px-5 sm:text-sm">
-                <Sparkles className="h-4 w-4 shrink-0" />
-                Competition Batch: GS Classes
+                {SITE.classesRange} — Competition Batch
               </span>
               <Link
                 href="/resources/current-affairs"

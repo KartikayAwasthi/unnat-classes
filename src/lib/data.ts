@@ -11,7 +11,6 @@ import {
   BarChart3,
   HeartHandshake,
   Library,
-  Landmark,
 } from "lucide-react";
 
 export const SITE = {
@@ -24,9 +23,9 @@ export const SITE = {
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
     "Our mission is to provide every child with quality education, strong values, and a better direction for a better future.",
-  classesRange: "Class 11 to 12",
+  classesRange: "GS Classes",
   classesNote:
-    "Class 11–12: Humanities Stream · Competition Batch: GS Classes",
+    "Competition Batch — General Studies coaching for competitive exam aspirants, covering History, Geography, Polity, Economics & Current Affairs.",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
   email: "unnatclass@gmail.com",
@@ -113,7 +112,6 @@ export const features = [
 ] as const;
 
 export const stats = [
-  { label: "Classes Offered", value: "11–12" },
   { label: "Competition Batch", value: "GS Classes" },
   { label: "Years of Experience", value: "8+" },
   { label: "Batch Size", value: "Small" },
@@ -172,37 +170,12 @@ export const teacher = {
 
 export const classGroups = [
   {
-    icon: Landmark,
-    range: "Class 11 – 12",
-    title: "Humanities Stream",
-    subjects: "Humanities Only",
-    description:
-      "Focused coaching in Political Science, History, Geography, and Economics for senior secondary Humanities students, led by a UGC NET & Political Science postgraduate.",
-  },
-  {
     icon: Target,
     range: "Competition Batch",
     title: "GS Classes",
     subjects: "General Studies",
     description:
       "Dedicated General Studies coaching for competitive exam aspirants, covering History, Geography, Polity, Economics, and Current Affairs.",
-  },
-];
-
-export const subjectsByStage = [
-  {
-    icon: Landmark,
-    range: "Class 11 – 12",
-    label: "Humanities Only",
-    description:
-      "Political Science, History, Geography, and Economics for the Humanities/Arts stream.",
-  },
-  {
-    icon: Target,
-    range: "Competition Batch",
-    label: "GS Classes",
-    description:
-      "General Studies coaching for competitive exam aspirants — History, Geography, Polity, Economics & Current Affairs.",
   },
 ];
 

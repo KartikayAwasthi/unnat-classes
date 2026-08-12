@@ -6,7 +6,7 @@ import { getNotes, resolveFileUrl } from "@/lib/api";
 import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
-  "Downloadable subject notes for Class 11 to 12, Humanities, and GS Classes — uploaded and updated by our teachers.";
+  "Downloadable GS Classes notes — General Studies resources for competitive exam aspirants, uploaded and updated by our teachers.";
 
 export const metadata: Metadata = {
   title: "Notes",

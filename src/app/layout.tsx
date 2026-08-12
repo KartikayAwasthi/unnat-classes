@@ -20,7 +20,7 @@ const poppins = Poppins({
 });
 
 const description =
-  "Unnat Classes offers quality coaching for Class 11 to 12 — a Humanities stream, and a Competition Batch (GS Classes) — with experienced teachers, concept-based learning, small batches, and personalized attention.";
+  "Unnat Classes offers quality GS Classes coaching — a Competition Batch for competitive exam aspirants — with experienced teachers, concept-based learning, small batches, and personalized attention.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -33,8 +33,7 @@ export const metadata: Metadata = {
     "Unnat Classes",
     "coaching classes",
     "tuition",
-    "Class 11 to 12",
-    "Humanities coaching",
+    "competitive exam coaching",
     "GS Classes",
     "Competition Batch",
     "coaching in Faridabad",

@@ -14,7 +14,7 @@ import StructuredData from "@/components/StructuredData";
 import { SITE, teacher } from "@/lib/data";
 import { breadcrumbList, personSchema } from "@/lib/structuredData";
 
-const description = `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for Class 11 to 12.`;
+const description = `Meet ${teacher.name}, Founder & Lead Teacher of Unnat Classes — dedicated to concept-based learning for competitive exam aspirants.`;
 
 export const metadata: Metadata = {
   title: teacher.name,

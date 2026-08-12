@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import StructuredData from "@/components/StructuredData";
-import { SITE, classGroups, features, subjectsByStage } from "@/lib/data";
+import { SITE, classGroups, features } from "@/lib/data";
 import { breadcrumbList, courseListSchema } from "@/lib/structuredData";
 
 const description =
-  "Unnat Classes offers structured coaching for Class 11 to 12 — a dedicated Humanities stream, and a Competition Batch (GS Classes) for competitive exam aspirants.";
+  "Unnat Classes offers structured GS Classes coaching — a Competition Batch for competitive exam aspirants, with complete syllabus coverage, regular tests, and personalized attention.";
 
 export const metadata: Metadata = {
   title: "Courses",
@@ -45,40 +45,14 @@ export default function CoursesPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="font-heading text-2xl font-extrabold text-navy-900 sm:text-3xl">
-              What We Teach, Stage by Stage
+              Our Program
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {subjectsByStage.map((stage, i) => (
-              <Reveal
-                key={stage.range}
-                delay={i * 0.1}
-                className="flex items-start gap-4 rounded-2xl bg-navy-950 p-7 text-white"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold-500 text-navy-950">
-                  <stage.icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-gold-400">
-                    {stage.range}
-                  </p>
-                  <h3 className="mt-1 font-heading text-lg font-bold">
-                    {stage.label}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/60">
-                    {stage.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {classGroups.map((group, i) => (
+          <div className="mx-auto mt-10 max-w-md">
+            {classGroups.map((group) => (
               <Reveal
                 key={group.range}
-                delay={i * 0.1}
                 className="flex flex-col rounded-2xl border border-navy-900/5 bg-cream p-8 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl"
               >
                 <div className="flex flex-wrap items-center gap-2">
