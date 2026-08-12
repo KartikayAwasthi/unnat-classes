@@ -20,7 +20,7 @@ const poppins = Poppins({
 });
 
 const description =
-  "Unnat Classes offers quality coaching for Class 1 to 12 — all subjects for Class 1 to 10, a Humanities stream for Class 11 to 12, and a Competition Batch (GS Classes) — with experienced teachers, concept-based learning, small batches, and personalized attention.";
+  "Unnat Classes offers quality coaching for Class 11 to 12 — a Humanities stream, and a Competition Batch (GS Classes) — with experienced teachers, concept-based learning, small batches, and personalized attention.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "Unnat Classes",
     "coaching classes",
     "tuition",
-    "Class 1 to 12",
+    "Class 11 to 12",
     "Humanities coaching",
     "GS Classes",
     "Competition Batch",

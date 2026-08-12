@@ -6,7 +6,7 @@ import { SITE, classGroups, features, subjectsByStage } from "@/lib/data";
 import { breadcrumbList, courseListSchema } from "@/lib/structuredData";
 
 const description =
-  "Unnat Classes offers structured coaching for Class 1 to 12 — all subjects for Class 1 to 10, a dedicated Humanities stream for Class 11 to 12, and a Competition Batch (GS Classes) for competitive exam aspirants.";
+  "Unnat Classes offers structured coaching for Class 11 to 12 — a dedicated Humanities stream, and a Competition Batch (GS Classes) for competitive exam aspirants.";
 
 export const metadata: Metadata = {
   title: "Courses",

@@ -11,11 +11,7 @@ import {
   BarChart3,
   HeartHandshake,
   Library,
-  GraduationCap,
   Landmark,
-  Sprout,
-  Blocks,
-  Award,
 } from "lucide-react";
 
 export const SITE = {
@@ -28,9 +24,9 @@ export const SITE = {
   subTagline: "Learn Today, Lead Tomorrow",
   mission:
     "Our mission is to provide every child with quality education, strong values, and a better direction for a better future.",
-  classesRange: "Class 1 to 12",
+  classesRange: "Class 11 to 12",
   classesNote:
-    "Class 1–10: All Subjects · Class 11–12: Humanities Stream · Competition Batch: GS Classes",
+    "Class 11–12: Humanities Stream · Competition Batch: GS Classes",
   phone: "9821602932",
   phoneHref: "tel:+919821602932",
   email: "unnatclass@gmail.com",
@@ -117,7 +113,7 @@ export const features = [
 ] as const;
 
 export const stats = [
-  { label: "Classes Offered", value: "1–12" },
+  { label: "Classes Offered", value: "11–12" },
   { label: "Competition Batch", value: "GS Classes" },
   { label: "Years of Experience", value: "8+" },
   { label: "Batch Size", value: "Small" },
@@ -176,30 +172,6 @@ export const teacher = {
 
 export const classGroups = [
   {
-    icon: Sprout,
-    range: "Class 1 – 5",
-    title: "Foundation Years",
-    subjects: "All Subjects",
-    description:
-      "Building strong basics in reading, writing, and numeracy through engaging, concept-based learning.",
-  },
-  {
-    icon: Blocks,
-    range: "Class 6 – 8",
-    title: "Building Blocks",
-    subjects: "All Subjects",
-    description:
-      "Strengthening core subjects and study habits as the curriculum grows more demanding.",
-  },
-  {
-    icon: Award,
-    range: "Class 9 – 10",
-    title: "Exam Readiness",
-    subjects: "All Subjects",
-    description:
-      "Focused board-exam preparation with complete syllabus coverage, regular tests, and doubt-clearing sessions.",
-  },
-  {
     icon: Landmark,
     range: "Class 11 – 12",
     title: "Humanities Stream",
@@ -218,13 +190,6 @@ export const classGroups = [
 ];
 
 export const subjectsByStage = [
-  {
-    icon: GraduationCap,
-    range: "Class 1 – 10",
-    label: "All Subjects",
-    description:
-      "Complete coverage across every subject — languages, mathematics, science, and social science.",
-  },
   {
     icon: Landmark,
     range: "Class 11 – 12",
