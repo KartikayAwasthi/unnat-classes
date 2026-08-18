@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Mail, Clock } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import StructuredData from "@/components/StructuredData";
@@ -55,23 +55,6 @@ export default function ContactPage() {
                 <div className="mt-8 space-y-6">
                   <div className="flex items-start gap-3.5">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-400">
-                      <Phone className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-white/50">
-                        Call Us Now
-                      </p>
-                      <a
-                        href={SITE.phoneHref}
-                        className="text-lg font-bold text-white hover:text-gold-400"
-                      >
-                        {SITE.phone}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3.5">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-400">
                       <Mail className="h-5 w-5" />
                     </span>
                     <div>
@@ -122,15 +105,8 @@ export default function ContactPage() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
-                  href={SITE.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
-                >
-                  <Phone className="h-4 w-4" />
-                  Call {SITE.phone}
-                </a>
-                <a
                   href={SITE.emailHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
                 >
                   <Mail className="h-4 w-4 text-gold-400" />
                   Email Us

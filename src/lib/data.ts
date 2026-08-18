@@ -26,12 +26,8 @@ export const SITE = {
   classesRange: "GS Classes",
   classesNote:
     "Competition Batch — General Studies coaching for competitive exam aspirants, covering History, Geography, Polity, Economics & Current Affairs.",
-  phone: "9821602932",
-  phoneHref: "tel:+919821602932",
   email: "unnatclass@gmail.com",
   emailHref: "mailto:unnatclass@gmail.com",
-  whatsappHref:
-    "https://wa.me/919821602932?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20admissions%20at%20Unnat%20Classes.",
   address: "A-7, Ganesh Nagar Colony, New Bhupani, Near Puri Aman Villa, Sector 89, Faridabad",
   city: "Faridabad",
   state: "Haryana",

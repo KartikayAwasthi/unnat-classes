@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Phone, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import { SITE, navLinks } from "@/lib/data";
 
@@ -118,11 +118,11 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href={SITE.phoneHref}
+            href={SITE.emailHref}
             className="flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-105 hover:bg-navy-800"
           >
-            <Phone className="h-4 w-4 text-gold-400" />
-            {SITE.phone}
+            <Mail className="h-4 w-4 text-gold-400" />
+            {SITE.email}
           </a>
         </div>
 
@@ -187,12 +187,12 @@ export default function Navbar() {
                 </div>
               ))}
               <a
-                href={SITE.phoneHref}
+                href={SITE.emailHref}
                 onClick={() => setOpen(false)}
                 className="mt-2 flex items-center justify-center gap-2 rounded-full bg-navy-900 px-4 py-3 text-sm font-semibold text-white"
               >
-                <Phone className="h-4 w-4 text-gold-400" />
-                Call {SITE.phone}
+                <Mail className="h-4 w-4 text-gold-400" />
+                Email {SITE.email}
               </a>
             </div>
           </motion.div>

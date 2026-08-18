@@ -5,7 +5,7 @@ import {
   Award,
   ArrowRight,
   GraduationCap,
-  Phone,
+  Mail,
   Quote,
   Sparkles,
 } from "lucide-react";
@@ -68,11 +68,11 @@ export default function TeacherPage() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href={SITE.phoneHref}
+                href={SITE.emailHref}
                 className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
               >
-                <Phone className="h-4 w-4" />
-                Call {SITE.phone}
+                <Mail className="h-4 w-4" />
+                Email {SITE.email}
               </a>
               <Link
                 href="/contact"
@@ -300,11 +300,11 @@ export default function TeacherPage() {
           </h2>
           <p className="mt-4 text-white/70">{SITE.admissionsNote}</p>
           <a
-            href={SITE.phoneHref}
+            href={SITE.emailHref}
             className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-base font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
           >
-            <Phone className="h-5 w-5" />
-            Call Us Now — {SITE.phone}
+            <Mail className="h-5 w-5" />
+            Email Us — {SITE.email}
           </a>
         </Reveal>
       </section>

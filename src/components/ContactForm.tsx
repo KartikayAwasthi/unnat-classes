@@ -37,10 +37,10 @@ export default function ContactForm() {
       message ? `Message: ${message}` : null,
     ].filter(Boolean);
 
-    const whatsappUrl = `https://wa.me/91${SITE.phone}?text=${encodeURIComponent(
-      lines.join("\n")
-    )}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    const mailtoUrl = `${SITE.emailHref}?subject=${encodeURIComponent(
+      "New enquiry from the website"
+    )}&body=${encodeURIComponent(lines.join("\n"))}`;
+    window.location.href = mailtoUrl;
 
     setSubmitted(true);
   }
@@ -63,8 +63,8 @@ export default function ContactForm() {
               Almost done!
             </h3>
             <p className="max-w-xs text-sm text-navy-900/60">
-              We&apos;ve opened WhatsApp with your details filled in — just hit
-              send there and we&apos;ll get back to you shortly.
+              We&apos;ve opened your email app with your details filled in —
+              just hit send and we&apos;ll get back to you shortly.
             </p>
           </motion.div>
         ) : (

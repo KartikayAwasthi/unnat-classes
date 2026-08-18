@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   GraduationCap,
+  Mail,
   Newspaper,
-  Phone,
   Sparkles,
 } from "lucide-react";
 import { SITE, stats } from "@/lib/data";
@@ -73,11 +73,11 @@ export default function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
-              href={SITE.phoneHref}
+              href={SITE.emailHref}
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
-              <Phone className="h-4 w-4 text-gold-400" />
-              Call {SITE.phone}
+              <Mail className="h-4 w-4 text-gold-400" />
+              Email {SITE.email}
             </a>
           </div>
 

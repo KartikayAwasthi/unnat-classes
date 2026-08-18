@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import EmailButton from "@/components/EmailButton";
 import { SITE } from "@/lib/data";
 
 const inter = Inter({
@@ -74,7 +74,6 @@ const structuredData = {
   description,
   url: SITE.url,
   logo: `${SITE.url}/images/logo.png`,
-  telephone: SITE.phoneHref.replace("tel:", ""),
   email: SITE.email,
   address: {
     "@type": "PostalAddress",
@@ -123,7 +122,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <WhatsAppButton />
+        <EmailButton />
       </body>
     </html>
   );

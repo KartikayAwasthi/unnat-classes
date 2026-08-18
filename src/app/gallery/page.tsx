@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ReelVideo from "@/components/gallery/ReelVideo";
 import StructuredData from "@/components/StructuredData";
@@ -98,11 +98,11 @@ export default function GalleryPage() {
             {SITE.admissionsNote}
           </h2>
           <a
-            href={SITE.phoneHref}
+            href={SITE.emailHref}
             className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-base font-bold text-navy-950 shadow-lg shadow-gold-500/30 transition-transform hover:scale-105"
           >
-            <Phone className="h-5 w-5" />
-            Call Us Now — {SITE.phone}
+            <Mail className="h-5 w-5" />
+            Email Us — {SITE.email}
           </a>
         </Reveal>
       </section>
