@@ -59,11 +59,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} | ${SITE.tagline}`,
     description,
+    images: ["/images/teacher-banner.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} | ${SITE.tagline}`,
     description,
+    images: ["/images/teacher-banner.jpg"],
   },
 };
 
