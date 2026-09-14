@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unnat Classes
 
-## Getting Started
+The official website for **Unnat Classes** — a GS (General Studies) competitive-exam coaching centre based in Faridabad, Haryana, run by Tanuja Singh. Built with Next.js and content-driven throughout: courses, current affairs, study resources, exam listings, a photo/video gallery and Instagram reels are all editable without touching code, via a companion admin panel.
 
-First, run the development server:
+**Live:** [unnatclasses.in](https://www.unnatclasses.in)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- **Course & exam listings** — GS batch details, competitive exam info under `/courses` and `/exams`
+- **Current affairs feed** — daily current-affairs posts rendered from Markdown (`marked`), sanitized with `sanitize-html`
+- **Resource library** — downloadable/viewable study material, with in-browser PDF rendering via `pdfjs-dist`
+- **Gallery & Reels** — photo gallery and embedded Instagram reels under `/gallery` and `/reels`
+- **Teacher profile** — `/teacher` page introducing Tanuja Singh (mirrors [teacher.unnatclasses.in](https://github.com/KartikayAwasthi/teacher.unnatclasses.in))
+- **SEO-first** — generated `sitemap.ts`, `robots.ts`, OpenGraph image, `llms.txt` for AI/answer-engine discoverability, and JSON-LD structured data (`StructuredData.tsx`)
+- **Contact form** — lead capture via `ContactForm.tsx` / `EmailButton.tsx`
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router)
+- [React 19](https://react.dev) + TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- `marked` + `sanitize-html` for rendering current-affairs/resource content safely
+- `pdfjs-dist` for in-browser PDF preview
+
+## Project structure
+
+```
+src/
+  app/
+    contact/, courses/, exams/, gallery/, reels/, resources/, teacher/   # route segments
+    sitemap.ts, robots.ts, opengraph-image.tsx
+  components/
+    exams/, gallery/, home/, reels/, resources/                          # section-specific UI
+    ContactForm.tsx, Navbar.tsx, Footer.tsx, StructuredData.tsx
+  lib/
+    api.ts            Data-fetching (talks to the admin panel's backend)
+    data.ts             Site-wide constants: name, tagline, mission, contact, geo, socials
+    gallery.ts, reels.ts  Gallery/reels content helpers
+    markdown.ts           Safe Markdown to HTML rendering (marked + sanitize-html)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Content (current affairs, exams, notes, posts, videos, Instagram reels) is managed through [admin-panel-UnnatClasses](https://github.com/KartikayAwasthi/admin-panel-UnnatClasses), a separate React admin dashboard that talks to the same backend.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Related projects
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [admin-panel-UnnatClasses](https://github.com/KartikayAwasthi/admin-panel-UnnatClasses) — the CMS/admin dashboard used to manage this site's content
+- [teacher.unnatclasses.in](https://github.com/KartikayAwasthi/teacher.unnatclasses.in) — standalone teacher profile microsite
