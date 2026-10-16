@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Images } from "lucide-react";
+import Image from "next/image";
+import { Copy, Images } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import ShareButton from "@/components/ShareButton";
-import DailyCurrentAffairCarousel from "@/components/resources/DailyCurrentAffairCarousel";
 import StructuredData from "@/components/StructuredData";
 import { getDailyCurrentAffairs } from "@/lib/api";
-import { SITE } from "@/lib/data";
 import { breadcrumbList } from "@/lib/structuredData";
 
 const description =
@@ -54,52 +52,45 @@ export default async function DailyCurrentAffairsPage() {
             Daily Current Affairs
           </h1>
           <p className="mt-4 text-white/70">
-            Quick, image-first updates — swipe through each day&apos;s highlights.
+            Quick, image-first updates — tap a card to open it, swipe through the images, scroll for the next one.
           </p>
         </Reveal>
       </section>
 
-      <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <section className="bg-white py-14 sm:py-20">
+        <div className="mx-auto max-w-5xl px-3 sm:px-6">
           {entries.length === 0 ? (
             <div className="flex flex-col items-center gap-3 py-16 text-center text-navy-900/50">
               <Images className="h-10 w-10 text-gold-400" strokeWidth={1.5} />
               <p>No updates posted yet — check back soon.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-8">
+            <div className="grid grid-cols-3 gap-1 sm:gap-2 lg:grid-cols-4">
               {entries.map((entry, i) => (
-                <Reveal key={entry.slug} delay={i * 0.06}>
-                  <article className="overflow-hidden rounded-2xl border border-navy-900/5 bg-cream shadow-sm">
-                    <DailyCurrentAffairCarousel
-                      images={entry.images}
-                      alt={entry.caption ?? `Daily current affairs — ${formatDate(entry.date)}`}
-                      priority={i === 0}
-                    />
-                    <div className="flex flex-col gap-2 p-6">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="text-xs font-semibold text-navy-900/40">
-                          {formatDate(entry.date)}
-                        </span>
-                        <ShareButton
-                          variant="icon"
-                          title={entry.caption ?? "Daily Current Affairs — Unnat Classes"}
-                          text={entry.caption ?? undefined}
-                          url={`${SITE.url}/resources/daily-current-affairs/${entry.slug}`}
-                        />
-                      </div>
-                      {entry.caption && (
-                        <p className="text-sm leading-relaxed text-navy-900/70">{entry.caption}</p>
-                      )}
-                      <Link
-                        href={`/resources/daily-current-affairs/${entry.slug}`}
-                        className="mt-1 inline-flex items-center gap-1 self-start text-sm font-semibold text-gold-600 transition-transform hover:translate-x-1"
-                      >
-                        View post <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </div>
-                  </article>
-                </Reveal>
+                <Link
+                  key={entry.slug}
+                  href={`/resources/daily-current-affairs/${entry.slug}`}
+                  className="group relative aspect-square overflow-hidden bg-navy-900"
+                >
+                  <Image
+                    src={entry.images[0]}
+                    alt={entry.caption ?? `Daily current affairs — ${formatDate(entry.date)}`}
+                    fill
+                    sizes="(min-width: 1024px) 280px, 33vw"
+                    priority={i < 6}
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {entry.images.length > 1 && (
+                    <span className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm">
+                      <Copy className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-2.5 py-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="text-[11px] font-semibold text-white">
+                      {formatDate(entry.date)}
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
           )}
