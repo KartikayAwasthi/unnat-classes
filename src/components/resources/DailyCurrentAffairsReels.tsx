@@ -168,6 +168,18 @@ function ReelSlide({ ref, entry, isActive, priority }: SlideProps & { ref: (el: 
   const axisLock = useRef<"x" | "y" | null>(null);
   const pendingStep = useRef<1 | -1 | 0>(0);
 
+  // Mirrors of the latest render's values. The native touch listeners below are
+  // attached once (not re-bound per render), so they read through these refs
+  // instead of closing over state that would otherwise go stale.
+  const imageIndexRef = useRef(imageIndex);
+  const dragOffsetRef = useRef(dragOffset);
+  const trackWidthRef = useRef(trackWidth);
+  useEffect(() => {
+    imageIndexRef.current = imageIndex;
+    dragOffsetRef.current = dragOffset;
+    trackWidthRef.current = trackWidth;
+  }, [imageIndex, dragOffset, trackWidth]);
+
   useEffect(() => {
     const el = trackRef.current;
     if (!el || total <= 1) return;
@@ -176,8 +188,30 @@ function ReelSlide({ ref, entry, isActive, priority }: SlideProps & { ref: (el: 
     return () => observer.disconnect();
   }, [total]);
 
+  function commitRelease() {
+    setIsDragging(false);
+    if (axisLock.current === "x") {
+      const offset = dragOffsetRef.current;
+      const index = imageIndexRef.current;
+      const width = trackWidthRef.current;
+      if (offset <= -SWIPE_THRESHOLD && index < total - 1) {
+        pendingStep.current = 1;
+        setDragOffset(-width);
+      } else if (offset >= SWIPE_THRESHOLD && index > 0) {
+        pendingStep.current = -1;
+        setDragOffset(width);
+      } else {
+        setDragOffset(0);
+      }
+    } else {
+      setDragOffset(0);
+    }
+    axisLock.current = null;
+  }
+
+  // Desktop mouse dragging via Pointer Events.
   function handlePointerDown(e: ReactPointerEvent<HTMLDivElement>) {
-    if (total <= 1) return;
+    if (total <= 1 || e.pointerType !== "mouse") return;
     e.currentTarget.setPointerCapture(e.pointerId);
     dragStart.current = { x: e.clientX, y: e.clientY };
     axisLock.current = null;
@@ -185,7 +219,7 @@ function ReelSlide({ ref, entry, isActive, priority }: SlideProps & { ref: (el: 
   }
 
   function handlePointerMove(e: ReactPointerEvent<HTMLDivElement>) {
-    if (!isDragging) return;
+    if (!isDragging || e.pointerType !== "mouse") return;
     const dx = e.clientX - dragStart.current.x;
     const dy = e.clientY - dragStart.current.y;
 
@@ -200,25 +234,59 @@ function ReelSlide({ ref, entry, isActive, priority }: SlideProps & { ref: (el: 
     setDragOffset(atLeadingEdge || atTrailingEdge ? dx * 0.3 : dx);
   }
 
-  function endDrag() {
-    if (!isDragging) return;
-    setIsDragging(false);
-
-    if (axisLock.current === "x") {
-      if (dragOffset <= -SWIPE_THRESHOLD && imageIndex < total - 1) {
-        pendingStep.current = 1;
-        setDragOffset(-trackWidth);
-      } else if (dragOffset >= SWIPE_THRESHOLD && imageIndex > 0) {
-        pendingStep.current = -1;
-        setDragOffset(trackWidth);
-      } else {
-        setDragOffset(0);
-      }
-    } else {
-      setDragOffset(0);
-    }
-    axisLock.current = null;
+  function handlePointerUp(e: ReactPointerEvent<HTMLDivElement>) {
+    if (e.pointerType !== "mouse" || !isDragging) return;
+    commitRelease();
   }
+
+  // Mobile touch dragging via native listeners, so we can preventDefault()
+  // once a horizontal swipe is detected — Pointer Events alone aren't reliable
+  // enough here, since the browser's own vertical-scroll gesture recognizer
+  // can otherwise win the gesture before our axis lock kicks in, which in
+  // practice tends to swallow right-swipes (previous image) more often than
+  // left-swipes (next image).
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el || total <= 1) return;
+
+    function onTouchStart(e: TouchEvent) {
+      const t = e.touches[0];
+      dragStart.current = { x: t.clientX, y: t.clientY };
+      axisLock.current = null;
+      setIsDragging(true);
+    }
+
+    function onTouchMove(e: TouchEvent) {
+      const t = e.touches[0];
+      const dx = t.clientX - dragStart.current.x;
+      const dy = t.clientY - dragStart.current.y;
+
+      if (axisLock.current === null) {
+        if (Math.abs(dx) < AXIS_DEADZONE && Math.abs(dy) < AXIS_DEADZONE) return;
+        axisLock.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      }
+      if (axisLock.current !== "x") return;
+
+      e.preventDefault();
+      const index = imageIndexRef.current;
+      const atLeadingEdge = dx > 0 && index === 0;
+      const atTrailingEdge = dx < 0 && index === total - 1;
+      setDragOffset(atLeadingEdge || atTrailingEdge ? dx * 0.3 : dx);
+    }
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", commitRelease, { passive: true });
+    el.addEventListener("touchcancel", commitRelease, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", commitRelease);
+      el.removeEventListener("touchcancel", commitRelease);
+    };
+    // commitRelease only reads refs/constants, so it's safe to not list here.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total]);
 
   function settleTransitionEnd() {
     if (pendingStep.current !== 0) {
@@ -244,8 +312,8 @@ function ReelSlide({ ref, entry, isActive, priority }: SlideProps & { ref: (el: 
         className="absolute inset-0 touch-pan-y"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
       >
         {visible.map((j) => (
           <div
